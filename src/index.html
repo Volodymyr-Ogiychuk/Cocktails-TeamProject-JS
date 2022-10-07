@@ -8,13 +8,91 @@
     <script type="module" src="./index.js"></script>
   </head>
   <body>
-    <!-- <include src="./partials/header.html"></include>
+    <header class="header">
+      <div class="flex-box container">
+        <a href="#" class="logo" aria-label="logo"
+          >Cocktails
+          <!-- <img class="logo-img" src="" alt="" /> -->
+        </a>
+        <nav class="navi js-menu-container">
+          <ul class="navi__list">
+            <li class="navi__item">
+              <a class="navi__link" href="#">Home</a>
+            </li>
+            <li class="navi__item">
+              <a class="navi__link" href="">Favorite</a>
+            </li>
+          </ul>
+        </nav>
+
+        <form class="search-form" id="search-form">
+          <input
+            type="text"
+            name="searchQuery"
+            autocomplete="off"
+            placeholder="Search cocktails..."
+          />
+          <button type="submit" class="btn">Search</button>
+        </form>
+
+        <div class="btn-box">
+          <button class="menu-btn" type="button">
+            <svg class="menu-btn__icon" width="20" height="20">
+              <!-- <use href=""></use> -->
+            </svg>
+          </button>
+        </div>
+      </div>
+    </header>
 
     <main>
-      <include src="./partials/hero.html"></include>
-      <include src="./partials/cocktails.html"></include>
+      <section class="hero">
+        <div class="container">
+          <h1 class="hero__title">
+            A party without cocktails is not like a party
+          </h1>
+          <p>Search your favorite cocktail by ABC</p>
+          <!-- <img src="" alt=""> -->
+        </div>
+      </section>
+
+      <section class="cocktails">
+        <div class="container">
+          <h2>Cocktails</h2>
+          <ul class="cocktails__list">
+            <li>
+              <div>
+                <!-- <img src="" alt=""> -->
+              </div>
+              <p>Negroni</p>
+              <button>Learn more</button>
+              <button>Add to</button>
+            </li>
+
+            <li>
+              <div>
+                <!-- <img src="" alt=""> -->
+              </div>
+              <p>Negroni</p>
+              <button>Learn more</button>
+              <button>Add to</button>
+            </li>
+
+            <li>
+              <div>
+                <!-- <img src="" alt=""> -->
+              </div>
+              <p>Negroni</p>
+              <button>Learn more</button>
+              <button>Add to</button>
+            </li>
+          </ul>
+        </div>
+      </section>
     </main>
 
-    <include src="./partials/footer.html"></include> -->
+    <footer class="footer">
+      <div class="container"></div>
+    </footer>
   </body>
 </html>
