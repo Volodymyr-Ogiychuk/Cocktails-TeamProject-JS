@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Cocktails</title>
+    <title>Favorite Ingredients</title>
     <link rel="stylesheet" href="./sass/index.scss" />
     <script type="module" src="./index.js"></script>
   </head>
@@ -32,7 +32,7 @@
             autocomplete="off"
             placeholder="Search cocktails..."
           />
-          <button class="btn" type="submit">Search</button>
+          <button type="submit" class="btn">Search</button>
         </form>
 
         <div class="btn-box">
@@ -44,73 +44,57 @@
         </div>
 
         <!-- Разметка переключателя темы -->
-  <div class="theme-switch">
-    <svg class="theme-switch__icon" role="img" aria-label="Иконка солнца">
-      <!-- <use href="./images/sprite.svg#sun"></use> -->
-    </svg>
+        <div class="theme-switch">
+          <svg class="theme-switch__icon" role="img" aria-label="Иконка солнца">
+            <!-- <use href="./images/sprite.svg#sun"></use> -->
+          </svg>
 
-    <div class="theme-switch__control">
-      <input
-        class="theme-switch__toggle"
-        type="checkbox"
-        name="theme"
-        id="theme-switch-toggle"
-        aria-label="Переключить между тёмной и светлой темой"
-      />
-      <label
-        aria-hidden="true"
-        class="theme-switch__track"
-        for="theme-switch-toggle"
-      >
-      </label>
-      <div aria-hidden="true" class="theme-switch__marker"></div>
-    </div>
+          <div class="theme-switch__control">
+            <input
+              class="theme-switch__toggle"
+              type="checkbox"
+              name="theme"
+              id="theme-switch-toggle"
+              aria-label="Переключить между тёмной и светлой темой"
+            />
+            <label
+              aria-hidden="true"
+              class="theme-switch__track"
+              for="theme-switch-toggle"
+            >
+            </label>
+            <div aria-hidden="true" class="theme-switch__marker"></div>
+          </div>
 
-    <svg class="theme-switch__icon" aria-label="Иконка луны">
-      <!-- <use href="./images/sprite.svg#moon"></use> -->
-    </svg>
-  </div>
-</div>
+          <svg class="theme-switch__icon" aria-label="Иконка луны">
+            <!-- <use href="./images/sprite.svg#moon"></use> -->
+          </svg>
+        </div>
+      </div>
     </header>
 
     <main>
-      <section class="hero">
+      <section class="favorite-ingredients">
         <div class="container">
-          <h1 class="hero__title">
-            A party without cocktails is not like a party
-          </h1>
-          <p>Search your favorite cocktail by ABC</p>
-          <!-- <img src="" alt=""> -->
-        </div>
-      </section>
-
-      <section class="cocktails">
-        <div class="container">
-          <h2 class="cocktails__title">Cocktails</h2>
-          <ul class="cocktails__list">
+          <h2>Favorite ingredients</h2>
+          <ul class="ingredients__list">
             <li>
-              <div>
-                <!-- <img src="" alt=""> -->
-              </div>
-              <p>Negroni</p>
+              <h3>Campari</h3>
+              <p>Liqueur</p>
+              <button>Learn more</button>
+              <button>Add to</button>
+            </li>
+
+            <li>
+              <h3>Blanco tequila</h3>
+              <p>Distilled beverage</p>
               <button class="btn-lm" type="button">Learn more</button>
               <button class="btn-add" type="button">Add to</button>
             </li>
 
             <li>
-              <div>
-                <!-- <img src="" alt=""> -->
-              </div>
-              <p>Negroni</p>
-              <button class="btn-lm" type="button">Learn more</button>
-              <button class="btn-add" type="button">Add to</button>
-            </li>
-
-            <li>
-              <div>
-                <!-- <img src="" alt=""> -->
-              </div>
-              <p>Negroni</p>
+              <h3>Vermouth</h3>
+              <p>fortified wine</p>
               <button class="btn-lm" type="button">Learn more</button>
               <button class="btn-add" type="button">Add to</button>
             </li>
@@ -137,17 +121,17 @@
           <li><a href="">1 ounce sweet vermouth</a></li>
           <li><a href="">Garnish: orange peel</a></li>
         </ul>
-    
+
         <h3>Instractions:</h3>
         <p>
-          Add the gin, Campari and sweet vermouth to a mixing glass filled with ice,
-          and stir until well-chilled. Strain into a rocks glass filled with large
-          ice cubes. Garnish with an orange peel.
+          Add the gin, Campari and sweet vermouth to a mixing glass filled with
+          ice, and stir until well-chilled. Strain into a rocks glass filled
+          with large ice cubes. Garnish with an orange peel.
         </p>
-    
+
         <button class="btn-add-fav" type="button">Add to favorite</button>
         <button class="btn-re-fav" type="button">Remove from favorite</button>
-    
+
         <button
           type="button"
           class="modal__button"
@@ -165,26 +149,26 @@
     <div class="back-drop is-hidden" data-modal>
       <div class="modal__ingredients">
         <h2 class="modal__heading">Campari</h2>
-    
+
         <h3>Liqueur</h3>
         <p>
           <span>Campari</span> is an Italian alcoholic liqueur, considered an
-          apéritif (20.5%, 21%, 24%, 25%, or 28.5% ABV, depending on the country in
-          which it is sold), obtained from the infusion of herbs and fruit
-          (including chinotto and cascarilla) in alcohol and water. It is a bitters,
-          characterised by its dark red colour.
+          apéritif (20.5%, 21%, 24%, 25%, or 28.5% ABV, depending on the country
+          in which it is sold), obtained from the infusion of herbs and fruit
+          (including chinotto and cascarilla) in alcohol and water. It is a
+          bitters, characterised by its dark red colour.
         </p>
-    
+
         <ul>
           <li>Type: Bitters</li>
           <li>Country of origin: Italy</li>
           <li>Alcohol by volume: 20.5–28.5%</li>
           <li>Flavour: Bitter, spicy and sweet</li>
         </ul>
-    
+
         <button class="btn-add-fav" type="button">Add to favorite</button>
         <button class="btn-re-fav" type="button">Remove from favorite</button>
-    
+
         <button
           type="button"
           class="modal__button"
@@ -197,6 +181,5 @@
         </button>
       </div>
     </div>
-
   </body>
 </html>
