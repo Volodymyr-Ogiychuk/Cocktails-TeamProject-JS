@@ -1,0 +1,130 @@
+.modal__cocktails{
+    padding: 16px 20px 40px 20px;
+}
+
+.modal__heading{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 900;
+    font-size: 32px;
+    line-height: 38px;
+    margin-bottom: 20px;
+    color: #202025;
+}
+
+.cocktails__instractions{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 162%;
+    margin-bottom: 20px;
+
+    text-transform: uppercase;
+
+    color: #202025;
+}
+
+.instractions-text{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 175%;
+    margin-bottom: 32px;
+
+    color: #5F6775;
+}
+
+.cocktail-compound{
+    margin-bottom: 20px;
+}
+
+.compound__title{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+    margin-bottom: 8px;
+
+    color: #000917;
+}
+
+.compound__text{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 21px;
+    margin-bottom: 8px;
+
+    color: #202025;
+}
+
+.compound__elem{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 162%;
+
+    color: #5F6775;
+}
+
+.btn-add-fav{
+    display: inline-flex;
+    text-align: center;
+  
+    padding: 8px 16px;
+  
+    background-color: #fe7031;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+  
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 171%;
+    text-align: center;
+    letter-spacing: 0.02em;
+
+    cursor: pointer;
+}
+
+.btn-re-fav{
+    display: inline-flex;
+    text-align: center;
+  
+    padding: 8px 16px;
+  
+    background-color: #fe7031;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+  
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 171%;
+    text-align: center;
+    letter-spacing: 0.02em;
+
+    cursor: pointer;
+}
+
+.modal__button{
+    border: none;
+    cursor: pointer;
+    background-color: #ffff;
+    padding: 7px;
+}
+
+.modal__icon{
+    background-color: rgba(0,0,0,0);
+    border: none;
+    cursor: pointer;
+}

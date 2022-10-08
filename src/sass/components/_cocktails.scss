@@ -1,0 +1,102 @@
+.cocktails__title {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 191%;
+  text-align: center;
+  color: #202025;
+  margin-top: 40px;
+  margin-bottom: 60px;
+}
+
+.cocktails__card {
+  text-align: center;
+  margin: auto;
+  margin-bottom: 20px;
+  width: 280px;
+  height: 449px;
+  left: 20px;
+  top: 837px;
+  border: 1px solid #fd5103;
+  border-radius: 4px;
+}
+
+.cocktails__name {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 900;
+  font-size: 26px;
+  line-height: 162%;
+  text-align: center;
+  color: #202025;
+}
+
+.btn-lm {
+  display: inline-flex;
+  text-align: center;
+
+  padding: 8px 16px;
+  margin-right: 24px;
+
+  background-color: #fe7031;
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 171%;
+  text-align: center;
+  letter-spacing: 0.02em;
+
+  cursor: pointer;
+}
+
+.btn-add {
+  display: inline-flex;
+  text-align: center;
+
+  padding: 8px 16px;
+
+  background-color: #ffffff;
+  color: #fe7031;
+  border: 1px solid #fe7031;
+  border-radius: 4px;
+
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 171%;
+  text-align: center;
+  letter-spacing: 0.02em;
+
+  cursor: pointer;
+}
+
+.icon__add{
+  margin-left: 10px;
+  
+}
+
+// Section NOT-Found
+
+.not-found{
+  display: none;
+}
+
+.not-found__title{
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 191%;
+  margin-bottom: 63px;
+
+  text-align: center;
+
+  color: #202025;
+}
