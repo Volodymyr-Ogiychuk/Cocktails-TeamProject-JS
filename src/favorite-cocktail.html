@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Cocktails</title>
+    <title>Favorite Cocktails</title>
     <link rel="stylesheet" href="./sass/index.scss" />
     <script type="module" src="./index.js"></script>
   </head>
@@ -32,7 +32,7 @@
             autocomplete="off"
             placeholder="Search cocktails..."
           />
-          <button class="btn" type="submit">Search</button>
+          <button type="submit" class="btn">Search</button>
         </form>
 
         <div class="btn-box">
@@ -43,50 +43,41 @@
           </button>
         </div>
 
-        <!-- Разметка переключателя темы -->
-  <div class="theme-switch">
-    <svg class="theme-switch__icon" role="img" aria-label="Иконка солнца">
-      <!-- <use href="./images/sprite.svg#sun"></use> -->
-    </svg>
+         <!-- Разметка переключателя темы -->
+        <div class="theme-switch">
+          <svg class="theme-switch__icon" role="img" aria-label="Иконка солнца">
+            <!-- <use href="./images/sprite.svg#sun"></use> -->
+          </svg>
 
-    <div class="theme-switch__control">
-      <input
-        class="theme-switch__toggle"
-        type="checkbox"
-        name="theme"
-        id="theme-switch-toggle"
-        aria-label="Переключить между тёмной и светлой темой"
-      />
-      <label
-        aria-hidden="true"
-        class="theme-switch__track"
-        for="theme-switch-toggle"
-      >
-      </label>
-      <div aria-hidden="true" class="theme-switch__marker"></div>
-    </div>
+          <div class="theme-switch__control">
+            <input
+              class="theme-switch__toggle"
+              type="checkbox"
+              name="theme"
+              id="theme-switch-toggle"
+              aria-label="Переключить между тёмной и светлой темой"
+            />
+            <label
+              aria-hidden="true"
+              class="theme-switch__track"
+              for="theme-switch-toggle"
+            >
+            </label>
+            <div aria-hidden="true" class="theme-switch__marker"></div>
+          </div>
 
-    <svg class="theme-switch__icon" aria-label="Иконка луны">
-      <!-- <use href="./images/sprite.svg#moon"></use> -->
-    </svg>
-  </div>
-</div>
+          <svg class="theme-switch__icon" aria-label="Иконка луны">
+            <!-- <use href="./images/sprite.svg#moon"></use> -->
+          </svg>
+        </div>
+      </div>   
+
     </header>
 
     <main>
-      <section class="hero">
+      <section class="favorite-cocktails">
         <div class="container">
-          <h1 class="hero__title">
-            A party without cocktails is not like a party
-          </h1>
-          <p>Search your favorite cocktail by ABC</p>
-          <!-- <img src="" alt=""> -->
-        </div>
-      </section>
-
-      <section class="cocktails">
-        <div class="container">
-          <h2 class="cocktails__title">Cocktails</h2>
+          <h2>Favorite cocktails</h2>
           <ul class="cocktails__list">
             <li>
               <div>
@@ -197,6 +188,5 @@
         </button>
       </div>
     </div>
-
   </body>
 </html>
