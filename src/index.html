@@ -12,16 +12,23 @@
   </head>
   <body>
     <header class="header">
+      
       <div class="flex-box container">
         <a href="#" class="logo" aria-label="logo"
           >Cocktails
-          <!-- <img class="logo-img" src="" alt="" /> -->
+          <svg class="logo__icon" width="40" height="40">
+            <use href="./image/cocktail 1.svg#cocktaile"
+                aria-label="img"
+            ></use>
+          </svg>
         </a>
         <nav class="navi js-menu-container">
           <ul class="navi__list">
+
             <li class="navi__item">
-              <a class="navi__link" href="#">Home</a>
+              <a class="navi__link" href=".#">Home</a>
             </li>
+
             <li class="navi__item">
               <div href="#" class="tip">
                 <div class="hover-box">
@@ -31,21 +38,21 @@
                 </ul></div>
                 Favorite
               </div>
-              <!-- <a class="navi__link" href="">Favorite</a> -->
             </li>
+
           </ul>
         </nav>
 
         <form class="search-form" id="search-form">
-          <input
+          <input class="search-input"
             type="text"
             name="searchQuery"
             autocomplete="off"
             placeholder="Search cocktails..."
           />
           <button class="btn" type="submit">
-            <svg class="icon__search" width="18" height="18">
-              <use href="./image/symbol-defs.svg#glass"
+            <svg class="icon__search" width="23" height="23">
+              <use href="./image/symbol-defs.svg#lup"
                   aria-label="img"
                   role="button"
               ></use>
@@ -53,10 +60,16 @@
           </button>
         </form>
 
-        <div class="btn-box">
-          <button class="menu-btn" type="button">
+        <div class="btn-box js-open-menu">
+          <button class="menu-btn" type="button" aria-expanded="false">
             <svg class="menu-btn__icon" width="30" height="16">
               <use href="./image/symbol-defs.svg#icon-menu"></use>
+            </svg>
+          </button>
+
+          <button class="menu-btn js-close-menu is-hiden-btn" type="button">
+            <svg class="menu-btn__icon" width="20" height="20">
+                <use href="./image/symbol-defs.svg#icon-close-line"></use>
             </svg>
           </button>
         </div>
@@ -92,12 +105,36 @@
     </header>
 
     <main>
-      <section class="hero">
-        <div class="container">
+      <section class="hero section">
+        <div class="container hero-flex">
           <h1 class="hero__title">
             A party without cocktails is not like a party
           </h1>
-          <img class="hero-img" src="./image/coctail-mobile.png" alt="cocktail">
+          <picture>
+            <source
+              srcset="
+                ./image/coctaile-desk.png    1x,
+                ./image/coctaile-desk@2x.png 2x
+              "
+              media="(min-width: 1200px)"
+            />
+            <source
+              srcset="
+                ./image/coctaile-tablet.png    1x,
+                ./image/coctaile-tablet@2x.png 2x
+              "
+              media="(min-width: 768px)"
+            />
+            <img class="hero-img"
+              srcset="
+                ./image/coctail-mobile.png    1x,
+                ./image/coctail-mobile@2x.png 2x
+              "
+              src="./image/coctail-mobile.png"
+              alt="cocktail"
+            />
+          </picture>
+          <!-- <img class="hero-img" src="./image/coctail-mobile.png" alt="cocktail"> -->
           <p class="hero__text">Search your favorite cocktail by ABC</p>
           <ul class="letter-list">
 
@@ -106,16 +143,17 @@
         </div>
       </section>
 
-      <section class="cocktails">
+      <section class="cocktails section">
         <div class="container">
-          <h2 class="cocktails__title">Cocktails</h2>
+          <h2 class="cocktails__title">Cocktails
+          </h2>
           <ul class="cocktails__list">
             <li class="cocktails__card">
               <div>
                 <!-- <img src="" alt=""> -->
               </div>
               <p class="cocktails__name">Negroni</p>
-              <div class="button">
+              <div class="button-wrapper">
                 <button class="btn-lm" type="button">Learn more</button>
                 <button class="btn-add" type="button">Add to
                   <svg class="icon__add" width="18" height="18">
@@ -133,7 +171,7 @@
                 <!-- <img src="" alt=""> -->
               </div>
               <p class="cocktails__name">Negroni</p>
-              <div class="button">
+              <div class="button-wrapper">
                 <button class="btn-lm" type="button">Learn more</button>
                 <button class="btn-add" type="button">Add to
                   <svg class="icon__add" width="18" height="18">
@@ -151,7 +189,7 @@
                 <!-- <img src="" alt=""> -->
               </div>
               <p class="cocktails__name">Negroni</p>
-              <div class="button">
+              <div class="button-wrapper">
                 <button class="btn-lm" type="button">Learn more</button>
                 <button class="btn-add" type="button">Add to
                   <svg class="icon__add" width="18" height="18">
@@ -168,7 +206,7 @@
 
       </section>
 
-      <section class="not-found">
+      <section class="not-found is-hidden">
         <div class="container">
           <h2 class="not-found__title">Sorry, we didn't find any cocktail for you</h2>
           <div class="images">
@@ -180,7 +218,7 @@
     </main>
 
     <footer class="footer">
-      <div class="container"></div>
+      
     </footer>
 
     <!-- Разметка модалки Cocktails -->
@@ -204,9 +242,13 @@
           <li><a class="compound__elem" href="">1 ounce sweet vermouth</a></li>
           <li><a class="compound__elem" href="">Garnish: orange peel</a></li>
         </ul>
+
+        <div class="button-wrapper">
+          <button class="btn-add-fav" type="button">Add to favorite</button>
+          <button class="btn-re-fav" type="button">Remove from favorite</button>
+        </div>
     
-        <button class="btn-add-fav" type="button">Add to favorite</button>
-        <button class="btn-re-fav" type="button">Remove from favorite</button>
+        
     
         <button
           type="button"
@@ -228,7 +270,7 @@
     
         <h3 class="ingredient__title">Liqueur</h3>
         <p class="ingredient__text">
-          <span class="text__elem">Campari</span> is an Italian alcoholic liqueur, considered an
+          <span class="ingredien__text--bald">Campari</span> is an Italian alcoholic liqueur, considered an
           apéritif (20.5%, 21%, 24%, 25%, or 28.5% ABV, depending on the country in
           which it is sold), obtained from the infusion of herbs and fruit
           (including chinotto and cascarilla) in alcohol and water. It is a bitters,
@@ -242,8 +284,10 @@
           <li class="compound__elem">Flavour: Bitter, spicy and sweet</li>
         </ul>
     
-        <button class="btn-add-fav" type="button">Add to favorite</button>
-        <button class="btn-re-fav" type="button">Remove from favorite</button>
+        <div class="button-wrapper">
+          <button class="btn-add-fav" type="button">Add to favorite</button>
+          <button class="btn-re-fav" type="button">Remove from favorite</button>
+        </div>
     
         <button
           type="button"
@@ -251,7 +295,7 @@
           data-modal-close
           aria-label="close"
         >
-          <svg class="modal__icon" width="32" height="32">
+          <svg class="modal__icon" width="25" height="25">
             <use href="./image/symbol-defs.svg#icon-close-line"></use>
           </svg>
         </button>

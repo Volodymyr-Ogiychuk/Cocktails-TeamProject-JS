@@ -17,7 +17,7 @@
         <nav class="navi js-menu-container">
           <ul class="navi__list">
             <li class="navi__item">
-              <a class="navi__link" href="#">Home</a>
+              <a class="navi__link" href="./index.html">Home</a>
             </li>
             <li class="navi__item">
               <div href="#" class="tip">
@@ -34,15 +34,15 @@
         </nav>
 
         <form class="search-form" id="search-form">
-          <input
+          <input class="search-input"
             type="text"
             name="searchQuery"
             autocomplete="off"
             placeholder="Search cocktails..."
           />
           <button class="btn" type="submit">
-            <svg class="icon__search" width="18" height="18">
-              <use href="./image/symbol-defs.svg#glass"
+            <svg class="icon__search" width="23" height="23">
+              <use href="./image/symbol-defs.svg#lup"
                   aria-label="img"
                   role="button"
               ></use>
@@ -90,7 +90,7 @@
     </header>
 
     <main>
-      <section class="favorite-cocktails">
+      <section class="favorite-cocktails section">
         <div class="container">
           <h2 class="cocktails__title">Favorite cocktails</h2>
           <ul class="cocktails__list">
@@ -99,7 +99,7 @@
                 <!-- <img src="" alt=""> -->
               </div>
               <p class="cocktails__name">Negroni</p>
-              <div class="button">
+              <div class="button-wrapper">
                 <button class="btn-lm" type="button">Learn more</button>
                 <button class="btn-add" type="button">Add to
                   <svg class="icon__add" width="18" height="18">
@@ -117,7 +117,7 @@
                 <!-- <img src="" alt=""> -->
               </div>
               <p class="cocktails__name">Negroni</p>
-              <div class="button">
+              <div class="button-wrapper">
                 <button class="btn-lm" type="button">Learn more</button>
                 <button class="btn-add" type="button">Add to
                   <svg class="icon__add" width="18" height="18">
@@ -135,7 +135,7 @@
                 <!-- <img src="" alt=""> -->
               </div>
               <p class="cocktails__name">Negroni</p>
-              <div class="button">
+              <div class="button-wrapper">
                 <button class="btn-lm" type="button">Learn more</button>
                 <button class="btn-add" type="button">Add to
                   <svg class="icon__add" width="18" height="18">
@@ -156,79 +156,5 @@
       <div class="container"></div>
     </footer>
 
-    <!-- Разметка модалки Cocktails -->
-
-    <!-- <div class="back-drop is-hidden" data-modal>
-      <div class="modal__cocktails">
-        <h2 class="modal__heading">Negroni</h2>
-        <img src="" alt="">
-        <ul>
-          <h3>Ingredients</h3>
-          <li><a href="">Ice</a></li>
-          <li><a href="">1 ounce gin</a></li>
-          <li><a href="">1 ounce Campari</a></li>
-          <li><a href="">1 ounce sweet vermouth</a></li>
-          <li><a href="">Garnish: orange peel</a></li>
-        </ul>
-    
-        <h3>Instractions:</h3>
-        <p>
-          Add the gin, Campari and sweet vermouth to a mixing glass filled with ice,
-          and stir until well-chilled. Strain into a rocks glass filled with large
-          ice cubes. Garnish with an orange peel.
-        </p>
-    
-        <button class="btn-add-fav" type="button">Add to favorite</button>
-        <button class="btn-re-fav" type="button">Remove from favorite</button>
-    
-        <button
-          type="button"
-          class="modal__button"
-          data-modal-close
-          aria-label="close"
-        >
-          <svg class="modal__icon" width="32" height="32">
-            <use href=""></use>
-          </svg>
-        </button>
-      </div>
-    </div> -->
-
-    <!-- Разметка модалки Ingredients -->
-    <!-- <div class="back-drop is-hidden" data-modal>
-      <div class="modal__ingredients">
-        <h2 class="modal__heading">Campari</h2>
-    
-        <h3>Liqueur</h3>
-        <p>
-          <span>Campari</span> is an Italian alcoholic liqueur, considered an
-          apéritif (20.5%, 21%, 24%, 25%, or 28.5% ABV, depending on the country in
-          which it is sold), obtained from the infusion of herbs and fruit
-          (including chinotto and cascarilla) in alcohol and water. It is a bitters,
-          characterised by its dark red colour.
-        </p>
-    
-        <ul>
-          <li>Type: Bitters</li>
-          <li>Country of origin: Italy</li>
-          <li>Alcohol by volume: 20.5–28.5%</li>
-          <li>Flavour: Bitter, spicy and sweet</li>
-        </ul>
-    
-        <button class="btn-add-fav" type="button">Add to favorite</button>
-        <button class="btn-re-fav" type="button">Remove from favorite</button>
-    
-        <button
-          type="button"
-          class="modal__button"
-          data-modal-close
-          aria-label="close"
-        >
-          <svg class="modal__icon" width="32" height="32">
-            <use href=""></use>
-          </svg>
-        </button>
-      </div>
-    </div> -->
   </body>
 </html>
