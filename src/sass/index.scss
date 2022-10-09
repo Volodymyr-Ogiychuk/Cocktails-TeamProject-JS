@@ -1,5 +1,14 @@
-@import './common';
+@import './base/reset';
+@import './utils/variables';
+@import './utils/breakpoints';
+@import './utils/placeholders';
 
-.is-hidden {
-  display: none;
-}
+@import './common';
+@import './components/theme';
+@import './components/header';
+@import './components/hero';
+@import './components/cocktails';
+@import './components/ingredients';
+@import './components/footer';
+@import './components/modal-cocktail.scss';
+@import './components/modal-ingredients';
