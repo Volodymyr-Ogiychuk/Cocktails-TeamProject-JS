@@ -1,5 +1,5 @@
 
-import axios from 'axios';
+import { getCocktailByLetter } from '../getCocktails'
 
 const formByLetter = document.querySelector('p');
 const cocktList = document.querySelector('.cocktails__list');
@@ -43,7 +43,7 @@ createLetterList(arr);
 
 function fetch() {
     if (letter !== '') {
-        return fetchCockt(letter)
+        return getCocktailByLetter(letter)
             .then(data => {
             if (data.drinks !== null) {    
                 cocktListLength = data.drinks.length;
@@ -51,7 +51,7 @@ function fetch() {
                 renderCardsList(drinksList);
             } else {
                 markupAlert();
-            }
+                }
         })
     }
     markupAlert();    
@@ -106,14 +106,3 @@ function markupAlert() {
 
 
 letterListRef.addEventListener('click', handleClick);
-
-
-const API_KEY = '1';
-const BASE_URL = `https://www.thecocktaildb.com/api/json/v1/`;
-
-const fetchCockt = async (letter) =>
-    await axios.get(`${BASE_URL}${API_KEY}/search.php?f=${letter}`)
-    .then(response => {
-      return response.data;
-    })
-    .catch(error => console.log(error.message));
