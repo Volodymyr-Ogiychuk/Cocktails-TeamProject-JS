@@ -1,102 +1,115 @@
 
+import axios from 'axios';
 
 const formByLetter = document.querySelector('p');
+const cocktList = document.querySelector('.cocktails__list');
 
+
+let btnLetterRef = [];
 let letter = '';
 let cocktListLength = 0;
+let drinksList = [];
 
 const str = 'abcdefghijklmnopqrstuvwxyz 1234567890';
 let arr = str.split("");
 
+// временная разметка
+
 const addList = '<ul class="letter-list"></ul>';
-
-formByLetter.insertAdjacentHTML('beforeend', addList);
-
+formByLetter.insertAdjacentHTML('afterend', addList);
 const letterListRef = document.querySelector('.letter-list');
 
+
+
 function createLetterList(arr) {
+    const markup = arr.map(element => {
+        return `
+            <li class="letter">
+                <button class="btn-letter" type="button">
+                ${element}
+                </button>
+            </li>`;
 
-const markup = arr.map(element => {
-    return `
-         <li class="letter">
-            <button class button type="button">
-            ${element}
-            </button>
-        </li>`;
-               
-    })
-        .join('');
-
-
-letterListRef.insertAdjacentHTML('beforeend', markup);
+        })
+            .join('');
+    letterListRef.insertAdjacentHTML('beforeend', markup);
+    btnLetterRef = document.querySelectorAll('.btn-letter');
        
 };
 
-function fetch() {
-    return fetchCockt(letter).then(data => {
-
-        console.log('Data : ', data);
-        console.log('Data length: ', data.drinks.length);
-        cocktListLength = data.drinks.length;
-
-            
-        // totalPages = Math.ceil(data.total / 40);
-            
-        // if (cocktListLength > 0) {
-            
-        //     if (pageNumber === 1) {
-                
-        //         Notify.success(`Hooray! We found ${data.totalHits} images.`);
-        //         }
-                
-        //         const arr = data.hits;
-        //         createImgList(arr);
-
-        //         if (pageNumber < totalPages) {
-        //             refs.btnLoad.style.display = 'block';
-        //             pageNumber += 1;
-                    
-        //         } 
-
-        //     } else if (data.total === 0) {
-        //         Notify.failure('Sorry, there are no images matching your search query. Please try again.')
-        //     }
-                 
-        })
-}
 
 createLetterList(arr);
 
+
+function fetch() {
+    if (letter !== '') {
+        return fetchCockt(letter)
+            .then(data => {
+            if (data.drinks !== null) {    
+                cocktListLength = data.drinks.length;
+                drinksList = data.drinks;
+                renderCardsList(drinksList);
+            } else {
+                markupAlert();
+            }
+        })
+    }
+    markupAlert();    
+};
+
+
+function removeActive() {
+    btnLetterRef.forEach(elem => {
+    elem.classList.remove("button-active");
+    })
+};
+          
+            
 const handleClick = (event => {
+    removeActive();
     letter = event.target.textContent.trim().toLowerCase();
     console.log('You pressed on button :', letter);
+    console.log('event.target', event.target);
+    event.target.classList.add("button-active")
     fetch();
-    
 });
+
+
+const renderCardsList = (drinksList) => {
+    const cardMarkup = drinksList.map(({ strDrinkThumb, strDrink }) => {   
+    return `
+        <li>
+            <div>
+              <img src="${strDrinkThumb}" alt="${strDrink}" width="280">
+            </div>
+            <p>${strDrink}</p>
+            <button class="btn-lm" type="button">Learn more</button>
+            <button class="btn-add" type="button">Add to</button>
+        </li>`;           
+    })
+        .join('');
+cocktList.innerHTML = '';   
+cocktList.insertAdjacentHTML('beforeend', cardMarkup);  
+};
+
+
+function markupAlert() {
+    cocktList.innerHTML = ''; 
+    console.log(`Sorry, we didn't find any cocktail for you`);
+    cocktList.insertAdjacentHTML('beforeend', `
+        <div class="alert">
+        <p>Sorry, we didn't find any cocktail for you</p>
+        <img src="./images/frame.jpg" alt="Picture sorry">
+        </div>
+    `);
+};
+
 
 letterListRef.addEventListener('click', handleClick);
 
 
-
-
-
-
-
-
-import axios from 'axios';
-
 const API_KEY = '1';
 const BASE_URL = `https://www.thecocktaildb.com/api/json/v1/`;
-
-
-// const options = {
-//   params: {
-//     image_type: 'photo',
-//     orientation: 'horizontal',
-//     safesearch: 'true',
-//     per_page: '40'
-//   },
-// };
 
 const fetchCockt = async (letter) =>
     await axios.get(`${BASE_URL}${API_KEY}/search.php?f=${letter}`)
