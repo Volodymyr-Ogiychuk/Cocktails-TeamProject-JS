@@ -130,7 +130,6 @@ const handleClick = (event => {
 
 function renderCardsList (drinksList) {
     const cardMarkup = drinksList.map(({ idDrink, strDrinkThumb, strDrink }) => {
-        console.log('strDrink', drinksList);
         
     return `
         <li>
@@ -268,15 +267,13 @@ function ingrModalOpen(event) {
     event.preventDefault();
     const modal = document.querySelector(".modal__cocktails");
     const ingrName = event.target.dataset.ingredient;
-    console.log('ingrName', ingrName);
+   
 
     getIngrByName(ingrName).then(data => {
-        console.log('data', data);
-        console.log('data.ingredients', data.ingredients);
+       
         const ingrData = data.ingredients;
         ingrCardMarkup = ingrData.map(({ strIngredient, strDescription, strType, strAlcohol, strABV }) => {
-            console.log('strIngredient', strIngredient);
-            console.log('strABV', strABV);
+            
             
             let ingrType = 'Non-specific';
             let ingrDescr = 'No description';
@@ -289,17 +286,15 @@ function ingrModalOpen(event) {
                 ingrDescr = strDescription.split(" ").slice(1).join(" ");                
             };
             
-                console.log('strType', strType);
-
             if (strType !== null) {
                 ingrType = strType;
-                console.log('ingrType', ingrType);
+                
             };
-            console.log('strABV', strABV);
+            
             if (strABV !== null) {
                 ingrAlcBV = `<li>Alcohol by volume: ${strABV}</li>`;
             }
-            console.log('ingrAlcBV', ingrAlcBV);
+          
             //  проверка на наличие в Favorites
         
         return `
@@ -315,7 +310,7 @@ function ingrModalOpen(event) {
            ${ingrAlcBV}
         </ul>
     
-        <button type="button" class="button-add-remove">${ingrBtnAddRemove}</button>
+        <button type="button">${ingrBtnAddRemove}</button>
     
         <button
           type="button"
