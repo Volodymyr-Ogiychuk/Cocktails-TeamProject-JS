@@ -1,11 +1,12 @@
 
-
 .flex-box{
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding-top: 10px;
+    z-index: 1;
 }
+
 
 .logo{
     font-size: 22px;
@@ -15,18 +16,36 @@
     box-shadow: rgba(32, 32, 37, 1);
 }
 
-// .logo__icon{
-//     fill: #000000;
-// }
+
+.navi{
 
 
+    @media screen and (max-width:$desktop){
+        
+        position: absolute;
+        top: 61px;
+        left: 0;
+
+        // padding-top: 75px;
+        height: 100vh;
+        width: 100%;
+
+       
+        transform: translateX(-100%);
+        transition: all 250ms linear;
+        
+    }
+}
     
 
 .navi__list{
-    display: none;
+    display: flex;
 
-    @media screen and(min-width:$desktop){
-        display: flex;
+    @media screen and (max-width:$desktop){
+        flex-direction: column;
+        
+        padding-top: 50px;
+        text-align: center;
     }
 }
 
@@ -39,7 +58,26 @@
 
     color: #202025;
 
+    @media screen and (max-width:$desktop){
+        margin: 0;
+        font-size: 28px;
+        line-height: 86%;
+        text-align: center;
+       
+        color: #000000;
+    }
 }
+
+.navi.is-open{
+    background-color: #ffff;
+    transform: translateX(1);
+    z-index: 1;
+
+    // &.theme-switch{
+    //     display: flex;
+    // }
+}
+
 
 
 .is-hiden-btn {
@@ -58,10 +96,6 @@
     cursor: pointer;
 
     background-color: transparent;
-    
-    @media screen and (min-width:$tablet){
-        margin-right: 40px;
-    }
 
     @media screen and (min-width:$desktop){
         display: none;  
@@ -80,12 +114,13 @@
 
 .search-input{
     border: none;
+    background-color: transparent;
 }
 
 .btn{
     border: none;
     border-left: 1px solid #FD5103;
-    background-color: #fff;
+    background-color: transparent;
 }
 
 .theme-switch{
@@ -104,7 +139,7 @@
 .menu-btn{
     border: none;
     cursor: pointer;
-    background-color: #ffff;
+    background-color: transparent;
 }
 
 // HOVER TIP
@@ -116,7 +151,7 @@
     text-decoration: none;
     width: 100px;
     
-    background: #ffff;
+    background: transparent;
     vertical-align: bottom;
     font-weight: 400;
     font-size: 18px;
@@ -124,9 +159,19 @@
     letter-spacing: 0.02em;
 
     color: #202025;
+    cursor: pointer;
+
+    @media screen and (max-width:$desktop){
+        font-size: 28px;
+        line-height: 86%;
+        margin-top: 40px;
+       
+        color: #000000;
+    }
 }
 
-.tip:hover .hover-box {
+.tip:hover .hover-box,
+.tip:focus .hover-box {
     display: block;
 }
 
@@ -141,6 +186,7 @@
     position: absolute;
     top: 23px;
     left: 0px;
+
 }
 
 .link-elem{
@@ -158,4 +204,14 @@
     color: #fff;
 }
 
+.chevron{
+    display: none;
 
+    @media screen and (max-width:$desktop){
+        display: flex;
+        position: absolute;
+        top: 0;
+        right: -40;
+        fill: #000000;
+    }
+}
