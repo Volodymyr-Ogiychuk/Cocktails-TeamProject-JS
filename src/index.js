@@ -6,3 +6,4 @@ import * as favoriteIngridients from './js/Vitalik/favoriteIngridients';
 import * as themeChanger from './js/Vitalik/themeChanger';
 import * as pagination from './js/Volodymyr/pagination';
 import * as searchByLetter from './js/Volodymyr/searchByLetter';
+import * as dataBase from './js/Alex/DB';
