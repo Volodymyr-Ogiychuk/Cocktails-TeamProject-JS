@@ -57,3 +57,100 @@
     margin-bottom: 20px;
 }
 
+.letter-list{
+    text-align: center;
+
+    @media screen and(min-width:$tablet){
+        display: flex;
+    }
+    
+}
+
+.btn-letter{
+    text-align: center;
+    text-transform: uppercase;
+
+    @media screen and(min-width:$tablet){
+        font-weight: 700;
+        font-size: 14px;
+        line-height: 21px;
+        display: flex;
+        align-items: center;
+        text-align: center;
+
+        color: #5F6775;
+        background-color: transparent;
+        border: none;
+    }
+    
+
+    &:hover,
+    &:focus{
+        color: #FD5103;
+    }
+}
+
+// ABC mobil select!!!!!!!
+
+.add{
+    padding-top: 5rem;
+    display: flex;
+    justify-content: center;
+}
+
+.wrap{
+    width: 93px;
+}
+
+.select{
+    width: 100%;
+    position: relative;
+
+    &.open{
+        .select__dropdown{
+            display: block;
+        }
+    }
+
+    &__input{
+        height: 34px;
+        border: 1px solid #FD5103;
+        border-radius: 4px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 6 10px;
+        cursor: pointer;
+    }
+
+    &__dropdown{
+        display: none;
+        position: absolute;
+        top: 34px;
+        left: 0;
+        right: 0;
+        border: 1px solid #FD5103;
+        border-radius: 4px;
+        max-height: 90px;
+        overflow-y: auto;
+    }
+
+    .letter{
+        flex-direction: row;
+        align-items: center;
+        padding: 4px 10px;
+        gap: 20px;
+        
+
+        &:hover{
+            color: white;
+            background-color: #FD5103;
+            cursor: pointer;
+            transition: .15s background-color ease-in;
+        }
+    }
+}
+
+
+
+

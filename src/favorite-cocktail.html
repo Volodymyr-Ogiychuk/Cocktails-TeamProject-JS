@@ -12,7 +12,7 @@
       <div class="flex-box container">
         <a href="#" class="logo" aria-label="logo"
           >Cocktails
-          <!-- <img class="logo-img" src="" alt="" /> -->
+        
         </a>
         <nav class="navi js-menu-container">
           <ul class="navi__list">
@@ -27,9 +27,15 @@
                   <li><a class="link-elem" href="./favorite-ingredients.html">Favorite ingredients</a></li>
                 </ul></div>
                 Favorite
+                <svg class="chevron" width="24" height="24">
+                  <use href="./image/symbol-defs.svg#icon-chevron"
+                      aria-label="img"
+                      role="button"
+                  ></use>
+                </svg>
               </div>
-              <!-- <a class="navi__link" href="">Favorite</a> -->
             </li>
+
           </ul>
         </nav>
 
@@ -51,9 +57,15 @@
         </form>
 
         <div class="btn-box">
-          <button class="menu-btn" type="button">
+          <button class="menu-btn js-open-menu" type="button" aria-expanded="false">
             <svg class="menu-btn__icon" width="30" height="16">
               <use href="./image/symbol-defs.svg#icon-menu"></use>
+            </svg>
+          </button>
+
+          <button class="menu-btn js-close-menu is-hiden-btn" type="button">
+            <svg class="menu-btn__icon" width="30" height="30">
+                <use href="./image/symbol-defs.svg#icon-close-line"></use>
             </svg>
           </button>
         </div>
