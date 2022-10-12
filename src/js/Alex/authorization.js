@@ -8,6 +8,8 @@ import {
 } from 'firebase/auth';
 import { addToFavorite } from './DB';
 import { getFavDrink } from './DB';
+import { getCocktailById } from '../getCocktails';
+import { renderDrinkMarkup } from '../markupTools';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyARB7IoC0JprBpfrU3Ehfw4t6yt6QUbzT0',
@@ -30,17 +32,15 @@ const regFormRef = document.querySelector('#registration-form');
 const regBtnRef = document.querySelector('.registration-btn');
 const signinBthRef = document.querySelector('.signin-btn');
 const logoutBtnRef = document.querySelector('.logout-btn');
+const bodyRef = document.querySelector('[data-page="favorite-ingr"]');
 
 // Buttons logic
-regBtnRef.addEventListener('click', onRegClick);
-signinBthRef.addEventListener('click', onSignInClick);
-logoutBtnRef.addEventListener('click', onLogOutClick);
+// regBtnRef.addEventListener('click', onRegClick);
+// signinBthRef.addEventListener('click', onSignInClick);
+// logoutBtnRef.addEventListener('click', onLogOutClick);
 
 function onRegClick(e) {
   e.preventDefault();
-
-  console.log(regFormRef);
-  console.log(e.currentTarget);
 
   const email = regFormRef.elements.email.value;
   const password = regFormRef.elements.password.value;
@@ -88,6 +88,7 @@ function onLogOutClick(e) {
       // An error happened.
     });
 }
+
 let uid = '';
 onAuthStateChanged(auth, user => {
   if (user) {
@@ -95,28 +96,41 @@ onAuthStateChanged(auth, user => {
     // https://firebase.google.com/docs/reference/js/firebase.User
     uid = user.uid;
     console.log('sign changed', uid);
-    // console.log(
-    //   user.getIdToken().then(res => console.log(res))
-    // );
   } else {
     // User is signed out
     console.log('signed out');
   }
 });
 
-const btnAdd = document.querySelector('.btn-add');
+//Add, remove, render favorites
+const cocktailsRef = document.querySelector('.cocktails.section');
+const cocktailsListRef = document.querySelector('.cocktails__list');
+const linkFavRef = document.querySelector('.link-elem');
 
-btnAdd.addEventListener('click', onAddClick);
+// cocktailsRef.addEventListener('click', onAddClick);
 
-function onAddClick() {
-  console.log(uid);
-  addToFavorite(btnAdd.dataset.id, uid);
+function onAddClick(e) {
+  if (e.target.classList.contains('btn-add')) {
+    const drinkID = event.target.parentNode.previousElementSibling.dataset.id;
+    addToFavorite(drinkID, uid);
+  }
 }
 
-authBtnRef.addEventListener('click', () => {
-  console.log(
-    getFavDrink(uid).then(drinkIdArr => {
-      drinkIdArr.map(drinkId => {});
-    })
-  );
-});
+// authBtnRef.addEventListener('click', e => {
+//   console.log('1');
+//   getFavDrink(uid).then(async drinkIdArr => {
+//     let arrayToRender = [];
+//     console.log('2');
+//     const arrayOfPromises = drinkIdArr.map(async drinkId => {
+//       return await getCocktailById(drinkId);
+//     });
+
+//     const drinks = await Promise.all(arrayOfPromises);
+
+//     drinks.map(({ drinks }) => {
+//       arrayToRender.push(drinks[0]);
+//     });
+
+//     cocktailsListRef.innerHTML = renderDrinkMarkup(arrayToRender);
+//   });
+// });
