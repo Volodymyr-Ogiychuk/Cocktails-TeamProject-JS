@@ -1,24 +1,25 @@
 
 import { getCocktailByLetter } from '../getCocktails';
-import { getCocktailByName } from '../getCocktails'; 
+import { getCocktailById } from '../getCocktails'; 
 import { getRandomCocktail } from '../getCocktails';
-import { getCocktailById } from '../getCocktails';
+import { getIngrByName } from '../getCocktails';
 
-const InfiniteScroll = require('infinite-scroll');
+// const InfiniteScroll = require('infinite-scroll');
 
 const formByLetter = document.querySelector('p');
 const cocktList = document.querySelector('.cocktails__list');
 const cocktModalRef = document.querySelector('.modal__cocktails');
-
 
 let btnLetterRef = [];
 let letter = '';
 let drinksList = [];
 let randomDrinks = [];
 let cardsPerPageAfterResize = 0;
-let cocktName = '';
+let cocktId = '';
 let cardsPerPage = 9;
-
+let ingrMarkup = '';
+let ingrCardMarkup = '';
+let ingrBtnAddRemove = '';
 
 const str = 'abcdefghijklmnopqrstuvwxyz 1234567890';
 let arr = str.split("");
@@ -62,7 +63,6 @@ function widthControl() {
 
 widthControl();
 
-
 function createLetterList(arr) {
     const markup = arr.map(element => {
         return `
@@ -79,7 +79,6 @@ function createLetterList(arr) {
        
 };
 
-
 function createRandomList() {
     cocktList.innerHTML = '';
         for (let i = 1; i <= cardsPerPage; i += 1) {
@@ -92,15 +91,12 @@ function createRandomList() {
                 } 
             });     
     }
-    console.log('randomDrinks', randomDrinks);
     renderCardsList(randomDrinks);
 };
-
 
 createLetterList(arr);
 
 createRandomList();
-
 
 function fetch() {
     if (letter !== '') {
@@ -109,7 +105,6 @@ function fetch() {
             if (data.drinks !== null) {    
                 cocktListLength = data.drinks.length;
                 drinksList = data.drinks;
-                console.log('data.drinks', data.drinks);
                 renderCardsList(drinksList);
             } else {
                 markupAlert();
@@ -118,7 +113,6 @@ function fetch() {
     }
     markupAlert();    
 };
-
 
 function removeActive() {
     btnLetterRef.forEach(elem => {
@@ -130,24 +124,22 @@ function removeActive() {
 const handleClick = (event => {
     removeActive();
     letter = event.target.textContent.trim().toLowerCase();
-    console.log('You pressed on button :', letter);
-    console.log('event.target', event.target);
     event.target.classList.add("button-active")
     fetch();
 });
 
-
 function renderCardsList (drinksList) {
-    const cardMarkup = drinksList.map(({ strDrinkThumb, strDrink }) => {   
-    console.log('I am working!!');
+    const cardMarkup = drinksList.map(({ idDrink, strDrinkThumb, strDrink }) => {
+        console.log('strDrink', drinksList);
+        
     return `
         <li>
             <div>
               <img src="${strDrinkThumb}" alt="${strDrink}" width="280">
             </div>
-            <p>${strDrink}</p>
+            <p data-id="${idDrink}">${strDrink}</p>
             <button class="btn-lm" type="button">Learn more</button>
-            <button class="btn-add" type="button">Add to</button>
+            ${ingrBtnAddRemove}
         </li>`;           
     })
         .join('');
@@ -155,7 +147,6 @@ cocktList.innerHTML = '';
 cocktList.insertAdjacentHTML('beforeend', cardMarkup);
 
 };
-
 
 function markupAlert() {
     cocktList.innerHTML = ''; 
@@ -168,29 +159,21 @@ function markupAlert() {
     `);
 };
 
-
-
 letterListRef.addEventListener('click', handleClick);
 
 // модалка
-
 
 function modalSelector() {
     const refs = {
       openModalBtn: document.querySelector(".cocktails__list"),
       closeModalBtn: document.querySelector("[data-modal-close]"),
-      
       };
 
-      console.log('openModalBtn', refs.openModalBtn);
-
-      console.log('opening mod');
-
     refs.openModalBtn.addEventListener("click", toggleModal);
-    refs.closeModalBtn.addEventListener("click", toggleModal);
-
+    refs.closeModalBtn.addEventListener("click", () => {
+        modal.classList.toggle("is-hidden");
+    });
 };
-
 
 function toggleModal(event) {
     const modal = document.querySelector("[data-modal]");
@@ -198,32 +181,13 @@ function toggleModal(event) {
     if (event.target.textContent !== 'Learn more') {
         return
     }
-    console.log('Connection done');
-    console.log('opening modal');
-    cocktName = event.target.previousElementSibling.textContent.trim();
-    console.log('cocktName', cocktName);
-    ;
-    getCocktailByName(cocktName)
+    cocktId = event.target.previousElementSibling.dataset.id;
+    
+    getCocktailById(cocktId)
         .then(data => {
             if (data.drinks !== null) {
                 cocktListLength = data.drinks.length;
                 drinksList = data.drinks;
-                console.log('data.drinks', data.drinks);
-                console.log('ready-to-markup');
-                renderModalCockt(drinksList);
-            } else {
-                markupAlert();
-            }
-        })
-    modal.classList.toggle("is-hidden");
-};
-
-
-function renderModalCockt(drinksList) {
-    const cocktMarkup = drinksList.map(({ idDrink, strAlcoholic, strInstructions, strDrinkThumb, strDrink }) => {   
-
-    getCocktailById(idDrink).then(data => {
-            if (data.drinks !== null) {
                 
                 let cocktObj = data.drinks[0];
                 let ingrObj = {};
@@ -231,50 +195,51 @@ function renderModalCockt(drinksList) {
 
                 for (let key in cocktObj) {
                     if (key.includes('strIngredient')) {
-                        if (cocktObj[key]) {
-                            console.log('Add cocktObj[key]', cocktObj[key]);
+                        if (cocktObj[key] !== null) {
                             ingrObj[key] = cocktObj[key]
                         } 
                     }
                 }
-                console.log('ingrObj', ingrObj);
 
                 for (let key in cocktObj) {
                     if (key.includes('strMeasure')) {
                         if (cocktObj[key]) {
-                            console.log('Add cocktObj[key]', cocktObj[key]);
                             dozsObj[key] = cocktObj[key]
                         } 
                     }
                 }
-                console.log('dozsObj', dozsObj);
+    
+                for (i = 0; i <= Object.keys(ingrObj).length - 1; i += 1) {
+                    ingrMarkup += `<li><a href="" data-ingredient="${Object.values(ingrObj)[i]}">${Object.values(dozsObj)[i]} ${Object.values(ingrObj)[i]}</a></li>
+                    `}
 
-                } else {
+                renderModalCockt(drinksList);
+
+            } else {
                 markupAlert();
             }
-    })
-        
-        return `
+        })
+    modal.classList.toggle("is-hidden");
+};
+
+function renderModalCockt(drinksList) {
+    const cocktMarkup = drinksList.map(({ idDrink, strAlcoholic, strInstructions, strDrinkThumb, strDrink }) => {
+    
+    return `
         <h2 class="modal__heading">${strDrink}</h2>
-        <img src="${strDrinkThumb}" alt="${strDrink}">
+        <img src="${strDrinkThumb}" alt="${strDrink}" width=450px>
+        <h3>Ingredients</h3>
+        <p>Per coctail</p>
         <ul>
-          <h3>Ingredients</h3>
-          <li><a href="">Ice</a></li>
-          <li><a href="">1 ounce gin</a></li>
-          <li><a href="">1 ounce Campari</a></li>
-          <li><a href="">1 ounce sweet vermouth</a></li>
-          <li><a href="">Garnish: orange peel</a></li>
+          ${ingrMarkup}
         </ul>
     
-        <h3>Instractions:</h3>
+        <h3>Instruction:</h3>
         <p>
-          Add the gin, Campari and sweet vermouth to a mixing glass filled with ice,
-          and stir until well-chilled. Strain into a rocks glass filled with large
-          ice cubes. Garnish with an orange peel.
+          ${strInstructions}
         </p>
 
-        <button class="btn-add-fav" type="button">Add to favorite</button>
-        <button class="btn-re-fav" type="button">Remove from favorite</button>
+        ${ingrBtnAddRemove}
     
         <button
           type="button"
@@ -286,12 +251,94 @@ function renderModalCockt(drinksList) {
             <!-- <use href=""></use> -->
           </svg>
         </button>
-       
         `;           
     })
         .join('');
-cocktModalRef.innerHTML = '';   
-cocktModalRef.insertAdjacentHTML('beforeend', cocktMarkup);
+    
+    cocktModalRef.innerHTML = '';   
+    cocktModalRef.insertAdjacentHTML('beforeend', cocktMarkup);
+    ingrMarkup = '';
+    const ingrRef = document.querySelector('.modal__cocktails');
+    ingrRef.addEventListener('click', ingrModalOpen)
 }
 
+// Вторая модалка
+
+function ingrModalOpen(event) {
+    event.preventDefault();
+    const modal = document.querySelector(".modal__cocktails");
+    const ingrName = event.target.dataset.ingredient;
+    console.log('ingrName', ingrName);
+
+    getIngrByName(ingrName).then(data => {
+        console.log('data', data);
+        console.log('data.ingredients', data.ingredients);
+        const ingrData = data.ingredients;
+        ingrCardMarkup = ingrData.map(({ strIngredient, strDescription, strType, strAlcohol, strABV }) => {
+            console.log('strIngredient', strIngredient);
+            console.log('strABV', strABV);
+            
+            let ingrType = 'Non-specific';
+            let ingrDescr = 'No description';
+            let ingrAlcBV = '';
+            let ingrStartDescr = '';
+            let ingrBtnAddRemove = '';
+
+            if (strDescription !== null) {
+                ingrStartDescr = strDescription.split(" ")[0];
+                ingrDescr = strDescription.split(" ").slice(1).join(" ");                
+            };
+            
+                console.log('strType', strType);
+
+            if (strType !== null) {
+                ingrType = strType;
+                console.log('ingrType', ingrType);
+            };
+            console.log('strABV', strABV);
+            if (strABV !== null) {
+                ingrAlcBV = `<li>Alcohol by volume: ${strABV}</li>`;
+            }
+            console.log('ingrAlcBV', ingrAlcBV);
+            //  проверка на наличие в Favorites
+        
+        return `
+            <h2 class="modal__heading">${ingrName}</h2>
+    
+        <h3>${ingrType}</h3>
+        <p>
+          <span>${ingrStartDescr}</span> ${ingrDescr}
+        </p>
+    
+        <ul>
+          <li>Type: ${ingrType}</li>
+           ${ingrAlcBV}
+        </ul>
+    
+        <button type="button">${ingrBtnAddRemove}</button>
+    
+        <button
+          type="button"
+          class="modal__button"
+          data-modal-close
+          aria-label="close"
+        >
+          <svg class="modal__icon" width="32" height="32">
+            <!-- <use href=""></use> -->
+          </svg>
+        </button>
+            `;
+
+        }).join('');
+
+        const ingrModalRef = document.querySelector('.modal__ingredients');
+        ingrModalRef.innerHTML = '';
+        ingrModalRef.insertAdjacentHTML('beforeend', ingrCardMarkup);
+        ingrCardMarkup = '';
+        cocktModalRef.addEventListener('click', ingrModalOpen);
+    });
+
+};
+    
 modalSelector();
+
