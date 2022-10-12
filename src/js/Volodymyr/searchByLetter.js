@@ -315,7 +315,7 @@ function ingrModalOpen(event) {
            ${ingrAlcBV}
         </ul>
     
-        <button type="button">${ingrBtnAddRemove}</button>
+        <button type="button" class="button-add-remove">${ingrBtnAddRemove}</button>
     
         <button
           type="button"
