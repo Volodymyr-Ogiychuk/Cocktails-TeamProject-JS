@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./sass/index.scss" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script type="module" src="./index.js"></script>
   </head>
   <body>
@@ -37,6 +38,12 @@
                   <li><a class="link-elem" href="./favorite-ingredients.html">Favorite ingredients</a></li>
                 </ul></div>
                 Favorite
+                <svg class="chevron" width="24" height="24">
+                  <use href="./image/symbol-defs.svg#icon-chevron"
+                      aria-label="img"
+                      role="button"
+                  ></use>
+                </svg>
               </div>
             </li>
 
@@ -60,15 +67,15 @@
           </button>
         </form>
 
-        <div class="btn-box js-open-menu">
-          <button class="menu-btn" type="button" aria-expanded="false">
+        <div class="btn-box">
+          <button class="menu-btn js-open-menu" type="button" aria-expanded="false">
             <svg class="menu-btn__icon" width="30" height="16">
               <use href="./image/symbol-defs.svg#icon-menu"></use>
             </svg>
           </button>
 
           <button class="menu-btn js-close-menu is-hiden-btn" type="button">
-            <svg class="menu-btn__icon" width="20" height="20">
+            <svg class="menu-btn__icon" width="30" height="30">
                 <use href="./image/symbol-defs.svg#icon-close-line"></use>
             </svg>
           </button>
@@ -136,7 +143,20 @@
           </picture>
           <!-- <img class="hero-img" src="./image/coctail-mobile.png" alt="cocktail"> -->
           <p class="hero__text">Search your favorite cocktail by ABC</p>
+
+          <div class="app">
+            <div class="wrap">
+              <div id="select">
+          
+              </div>
+            </div>
+
+          </div>
+
           <ul class="letter-list">
+            <li class="letter">
+
+            </li>
 
           </ul>
   
@@ -266,9 +286,13 @@
     <!-- Разметка модалки Ingredients -->
     <div class="back-drop is-hidden" data-modal>
       <div class="modal__ingredients">
-        <h2 class="modal__heading">Campari</h2>
+        <div class="modal__title">
+          <h2 class="modal__heading">Campari</h2>
     
-        <h3 class="ingredient__title">Liqueur</h3>
+          <h3 class="ingredient__title">Liqueur</h3>
+
+        </div>
+        
         <p class="ingredient__text">
           <span class="ingredien__text--bald">Campari</span> is an Italian alcoholic liqueur, considered an
           apéritif (20.5%, 21%, 24%, 25%, or 28.5% ABV, depending on the country in
