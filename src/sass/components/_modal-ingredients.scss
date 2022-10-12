@@ -1,0 +1,44 @@
+.modal__ingredients{
+    padding: 16px 20px 40px 20px;
+}
+
+.modal__title{
+
+    @media screen and(min-width:$tablet){
+        border-bottom: 1px solid #FD5103;
+    }
+    
+}
+
+.ingredient__title{
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+    margin-bottom: 40px;
+
+    text-transform: uppercase;
+
+    color: #202025;
+}
+
+.ingredient__text{
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 175%;
+    margin-top: 28px;
+    margin-bottom: 29px;
+
+    color: #5F6775;
+}
+
+.ingredien__text--bald{
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 175%;
+
+    color: #202025;
+}
+
+.ingredient__compound{
+    margin-bottom: 20px;
+}
