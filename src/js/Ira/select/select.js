@@ -2,12 +2,7 @@ const getRender = () => {
     return `
     <div class="select__input" data-type="input">A<i class="fa fa-chevron-down" aria-hidden="true" data-type="arrow"></i></div>
     <div class="select__dropdown">
-      <ul class="letter-list">
-        <li class="letter">B</li>
-        <li class="letter">C</li>
-        <li class="letter">D</li>
-        <li class="letter">E</li>
-      </ul>
+      <ul class="letter-list"></ul>
     </div>
     `;
 }

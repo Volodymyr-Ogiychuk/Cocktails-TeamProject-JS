@@ -27,18 +27,18 @@
     if (!isMenuOpen & window.innerWidth <= 768) {
       logo.style.display = "none";
       teme.style.display = "flex";
-      form.style.display = "flex";
+      form.classList.add('show');
       box.style.flexDirection = "row-reverse";
       return
     } 
     else {
       logo.style.display = "flex";
       teme.style.display = "none";
-      form.style.display = "none";
+      form.classList.remove('show');
       box.style.flexDirection = "row";
     }
 
-    if (!isMenuOpen & window.innerWidth > 768 && window.innerWidth <= 1200) {
+    if (!isMenuOpen & window.innerWidth > 768 && window.innerWidth <= 1280) {
         form.style.display = "none";
         teme.style.display = "flex";
         // box.style.flexDirection = "row-reverse";
