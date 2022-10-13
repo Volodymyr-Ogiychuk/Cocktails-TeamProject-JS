@@ -4,6 +4,7 @@ const getRender = () => {
     return `
     <div class="select__input" data-type="input">A<i class="fa fa-chevron-down" aria-hidden="true" data-type="arrow"></i></div>
     <div class="select__dropdown">
+
       <ul class="letter-list">
         
       </ul>
