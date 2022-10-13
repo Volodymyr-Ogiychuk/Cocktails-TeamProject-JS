@@ -2,7 +2,28 @@
 .modal__cocktails{
     position: relative;
     padding: 16px 20px 40px 20px;
+    background-color: inherit;
+
+    // @media screen and (min-width: 480px) {
+    //     position: absolute;
+    //     // transform: translate(-50%, -50%) scale(1);
+    //     ;
+    //   }
+    
+    //   @media screen and (min-width: 1200px) {
+    //     width: 528px;
+    // }
+    
+    
+    background-color: #fff;
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12),
+    0px 1px 1px rgba(0, 0, 0, 0.14),
+    0px 2px 1px rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+    transition: transform $timing-function;
 }
+
+
 
 .modal__heading{
     font-family: $fotn-roboto;
