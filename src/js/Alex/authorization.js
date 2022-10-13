@@ -109,7 +109,7 @@ function onSignOut() {
   regFormTitleRef.classList.add('success-auth');
   document.querySelector('.reg-form').style.display = 'none';
   setTimeout(() => {
-    document.querySelector('.back-drop-reg').classList.add('is-hidden');
+    document.querySelector('.back-drop-reg').classList.add('is-hide');
     regFormTitleRef.textContent = 'Please log in or create new account';
     regFormTitleRef.classList.remove('success-auth');
     document.querySelector('.reg-form').style.display = 'block';
@@ -121,7 +121,7 @@ function onSignOff() {
   regFormTitleRef.classList.add('success-auth');
   document.querySelector('.reg-form').style.display = 'none';
   setTimeout(() => {
-    document.querySelector('.back-drop-reg').classList.add('is-hidden');
+    document.querySelector('.back-drop-reg').classList.add('is-hide');
     regFormTitleRef.textContent = 'Please log in or create new account';
     regFormTitleRef.classList.remove('success-auth');
     document.querySelector('.reg-form').style.display = 'block';
@@ -168,9 +168,9 @@ linkFavRef.addEventListener('click', e => {
 authBtnRef.addEventListener('click', onAuthBtnClick);
 
 function onAuthBtnClick() {
-  document.querySelector('.back-drop-reg').classList.remove('is-hidden');
+  document.querySelector('.back-drop-reg').classList.remove('is-hide');
 }
 
 document.querySelector('.reg-close-btn').addEventListener('click', () => {
-  document.querySelector('.back-drop-reg').classList.add('is-hidden');
+  document.querySelector('.back-drop-reg').classList.add('is-hide');
 });
