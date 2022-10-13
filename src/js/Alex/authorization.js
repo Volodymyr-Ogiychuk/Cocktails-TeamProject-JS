@@ -8,6 +8,8 @@ import {
 } from 'firebase/auth';
 import { addToFavorite } from './DB';
 import { getFavDrink } from './DB';
+import { getCocktailById } from '../getCocktails';
+import { renderDrinkMarkup } from '../markupTools';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyARB7IoC0JprBpfrU3Ehfw4t6yt6QUbzT0',
@@ -30,6 +32,7 @@ const regFormRef = document.querySelector('#registration-form');
 const regBtnRef = document.querySelector('.registration-btn');
 const signinBthRef = document.querySelector('.signin-btn');
 const logoutBtnRef = document.querySelector('.logout-btn');
+const regFormTitleRef = document.querySelector('.reg-form-title');
 
 // Buttons logic
 regBtnRef.addEventListener('click', onRegClick);
@@ -38,9 +41,6 @@ logoutBtnRef.addEventListener('click', onLogOutClick);
 
 function onRegClick(e) {
   e.preventDefault();
-
-  console.log(regFormRef);
-  console.log(e.currentTarget);
 
   const email = regFormRef.elements.email.value;
   const password = regFormRef.elements.password.value;
@@ -88,6 +88,7 @@ function onLogOutClick(e) {
       // An error happened.
     });
 }
+
 let uid = '';
 onAuthStateChanged(auth, user => {
   if (user) {
@@ -95,28 +96,81 @@ onAuthStateChanged(auth, user => {
     // https://firebase.google.com/docs/reference/js/firebase.User
     uid = user.uid;
     console.log('sign changed', uid);
-    // console.log(
-    //   user.getIdToken().then(res => console.log(res))
-    // );
+    onSignOff();
   } else {
     // User is signed out
     console.log('signed out');
+    onSignOut();
   }
 });
 
-const btnAdd = document.querySelector('.btn-add');
-
-btnAdd.addEventListener('click', onAddClick);
-
-function onAddClick() {
-  console.log(uid);
-  addToFavorite(btnAdd.dataset.id, uid);
+function onSignOut() {
+  regFormTitleRef.textContent = 'Success! ✔';
+  regFormTitleRef.classList.add('success-auth');
+  document.querySelector('.reg-form').style.display = 'none';
+  setTimeout(() => {
+    document.querySelector('.back-drop-reg').classList.add('is-hide');
+    regFormTitleRef.textContent = 'Please log in or create new account';
+    regFormTitleRef.classList.remove('success-auth');
+    document.querySelector('.reg-form').style.display = 'block';
+  }, 1000);
 }
 
-authBtnRef.addEventListener('click', () => {
-  console.log(
-    getFavDrink(uid).then(drinkIdArr => {
-      drinkIdArr.map(drinkId => {});
-    })
-  );
+function onSignOff() {
+  regFormTitleRef.textContent = `Success! ✔`;
+  regFormTitleRef.classList.add('success-auth');
+  document.querySelector('.reg-form').style.display = 'none';
+  setTimeout(() => {
+    document.querySelector('.back-drop-reg').classList.add('is-hide');
+    regFormTitleRef.textContent = 'Please log in or create new account';
+    regFormTitleRef.classList.remove('success-auth');
+    document.querySelector('.reg-form').style.display = 'block';
+  }, 1000);
+}
+
+//Add, remove, render favorites
+const cocktailsRef = document.querySelector('.cocktails.section');
+const cocktailsListRef = document.querySelector('.cocktails__list');
+const linkFavRef = document.querySelector('.link-elem');
+
+cocktailsRef.addEventListener('click', onAddClick);
+
+function onAddClick(e) {
+  if (e.target.classList.contains('btn-add')) {
+    const drinkID = event.target.parentNode.previousElementSibling.dataset.id;
+    addToFavorite(drinkID, uid);
+  }
+}
+
+linkFavRef.addEventListener('click', e => {
+  e.preventDefault();
+
+  getFavDrink(uid).then(async drinkIdArr => {
+    let arrayToRender = [];
+
+    const arrayOfPromises = drinkIdArr.map(async drinkId => {
+      return await getCocktailById(drinkId);
+    });
+
+    const drinks = await Promise.all(arrayOfPromises);
+
+    drinks.map(({ drinks }) => {
+      arrayToRender.push(drinks[0]);
+    });
+
+    document.querySelector('.hero').style.display = 'none';
+    document.querySelector('.cocktails__title').innerHTML =
+      'Favorite cocktails';
+    cocktailsListRef.innerHTML = renderDrinkMarkup(arrayToRender);
+  });
+});
+
+authBtnRef.addEventListener('click', onAuthBtnClick);
+
+function onAuthBtnClick() {
+  document.querySelector('.back-drop-reg').classList.remove('is-hide');
+}
+
+document.querySelector('.reg-close-btn').addEventListener('click', () => {
+  document.querySelector('.back-drop-reg').classList.add('is-hide');
 });

@@ -1,8 +1,26 @@
 .hero-flex{
+    display: flex;
+    flex-wrap: wrap;
+
     @media screen and (min-width: $tablet) {
-        display: flex;
-        flex-wrap: wrap;
+        column-gap: 21px;  
     }
+
+    @media screen and (min-width: $desktop) {
+        column-gap: 6px;  
+    }
+}
+
+.hero__box{
+
+    @media screen and (min-width: $tablet) {
+        max-width: 346px;
+    }
+
+    @media screen and (min-width: $desktop) {
+        max-width: 683px;
+    }
+    
 }
 
 .hero__title{
@@ -51,10 +69,14 @@
     font-size: 14px;
     line-height: 200%;
     letter-spacing: 0.02em;
-    color: #000000;
+    color: inherit;
     opacity: 0.8;
     margin-top: 28px;
     margin-bottom: 20px;
+
+    @media screen and (min-width: $tablet) {
+        text-align: left;
+    }
 }
 
 .letter-list{
@@ -62,8 +84,34 @@
 
     @media screen and(min-width:$tablet){
         display: flex;
+        flex-wrap: wrap;
+        max-width: 324px;
+        font-weight: 700;
+        font-size: 14px;
+        line-height: 21px;
+        align-items: center;
+        margin-top: 40px;
+
+        color: #5F6775;
+    }
+
+    @media screen and(min-width:$desktop){
+        max-width: 523px;
+        font-size: 24px;
+        line-height: 36px;
+        margin-top: 47px;
     }
     
+}
+
+.letter{
+    width: 24px;
+    height: 25px;
+
+    @media screen and(min-width:$desktop){
+        width: 40px;
+        height: 40px;  
+    }
 }
 
 .btn-letter{
@@ -71,6 +119,8 @@
     text-transform: uppercase;
 
     @media screen and(min-width:$tablet){
+        // width: 24px;
+        // height: 25px;
         font-weight: 700;
         font-size: 14px;
         line-height: 21px;
@@ -121,6 +171,10 @@
         justify-content: space-between;
         padding: 6 10px;
         cursor: pointer;
+
+        @media screen and(min-width:$tablet){
+            display: none;
+        }
     }
 
     &__dropdown{
