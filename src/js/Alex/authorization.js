@@ -32,12 +32,12 @@ const regFormRef = document.querySelector('#registration-form');
 const regBtnRef = document.querySelector('.registration-btn');
 const signinBthRef = document.querySelector('.signin-btn');
 const logoutBtnRef = document.querySelector('.logout-btn');
-const bodyRef = document.querySelector('[data-page="favorite-ingr"]');
+const regFormTitleRef = document.querySelector('.reg-form-title');
 
 // Buttons logic
-// regBtnRef.addEventListener('click', onRegClick);
-// signinBthRef.addEventListener('click', onSignInClick);
-// logoutBtnRef.addEventListener('click', onLogOutClick);
+regBtnRef.addEventListener('click', onRegClick);
+signinBthRef.addEventListener('click', onSignInClick);
+logoutBtnRef.addEventListener('click', onLogOutClick);
 
 function onRegClick(e) {
   e.preventDefault();
@@ -96,18 +96,44 @@ onAuthStateChanged(auth, user => {
     // https://firebase.google.com/docs/reference/js/firebase.User
     uid = user.uid;
     console.log('sign changed', uid);
+    onSignOff();
   } else {
     // User is signed out
     console.log('signed out');
+    onSignOut();
   }
 });
+
+function onSignOut() {
+  regFormTitleRef.textContent = 'Success! ✔';
+  regFormTitleRef.classList.add('success-auth');
+  document.querySelector('.reg-form').style.display = 'none';
+  setTimeout(() => {
+    document.querySelector('.back-drop-reg').classList.add('is-hidden');
+    regFormTitleRef.textContent = 'Please log in or create new account';
+    regFormTitleRef.classList.remove('success-auth');
+    document.querySelector('.reg-form').style.display = 'block';
+  }, 1000);
+}
+
+function onSignOff() {
+  regFormTitleRef.textContent = `Success! ✔`;
+  regFormTitleRef.classList.add('success-auth');
+  document.querySelector('.reg-form').style.display = 'none';
+  setTimeout(() => {
+    document.querySelector('.back-drop-reg').classList.add('is-hidden');
+    regFormTitleRef.textContent = 'Please log in or create new account';
+    regFormTitleRef.classList.remove('success-auth');
+    document.querySelector('.reg-form').style.display = 'block';
+  }, 1000);
+}
 
 //Add, remove, render favorites
 const cocktailsRef = document.querySelector('.cocktails.section');
 const cocktailsListRef = document.querySelector('.cocktails__list');
 const linkFavRef = document.querySelector('.link-elem');
 
-// cocktailsRef.addEventListener('click', onAddClick);
+cocktailsRef.addEventListener('click', onAddClick);
 
 function onAddClick(e) {
   if (e.target.classList.contains('btn-add')) {
@@ -116,21 +142,35 @@ function onAddClick(e) {
   }
 }
 
-// authBtnRef.addEventListener('click', e => {
-//   console.log('1');
-//   getFavDrink(uid).then(async drinkIdArr => {
-//     let arrayToRender = [];
-//     console.log('2');
-//     const arrayOfPromises = drinkIdArr.map(async drinkId => {
-//       return await getCocktailById(drinkId);
-//     });
+linkFavRef.addEventListener('click', e => {
+  e.preventDefault();
 
-//     const drinks = await Promise.all(arrayOfPromises);
+  getFavDrink(uid).then(async drinkIdArr => {
+    let arrayToRender = [];
 
-//     drinks.map(({ drinks }) => {
-//       arrayToRender.push(drinks[0]);
-//     });
+    const arrayOfPromises = drinkIdArr.map(async drinkId => {
+      return await getCocktailById(drinkId);
+    });
 
-//     cocktailsListRef.innerHTML = renderDrinkMarkup(arrayToRender);
-//   });
-// });
+    const drinks = await Promise.all(arrayOfPromises);
+
+    drinks.map(({ drinks }) => {
+      arrayToRender.push(drinks[0]);
+    });
+
+    document.querySelector('.hero').style.display = 'none';
+    document.querySelector('.cocktails__title').innerHTML =
+      'Favorite cocktails';
+    cocktailsListRef.innerHTML = renderDrinkMarkup(arrayToRender);
+  });
+});
+
+authBtnRef.addEventListener('click', onAuthBtnClick);
+
+function onAuthBtnClick() {
+  document.querySelector('.back-drop-reg').classList.remove('is-hidden');
+}
+
+document.querySelector('.reg-close-btn').addEventListener('click', () => {
+  document.querySelector('.back-drop-reg').classList.add('is-hidden');
+});
