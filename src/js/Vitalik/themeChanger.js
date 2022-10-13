@@ -6,7 +6,7 @@ const Theme = {
 };
 const THEME_STORAGE_KEY = 'theme';
 const inputRef = document.querySelector('.theme-switch__toggle');
-const qq = document.querySelector('.navi.is-open');
+const qq = document.querySelector('.js-menu-container');
 const ww = document.querySelector('.menu-btn');
 const rr = document.querySelector('.theme__title-light');
 const tt = document.querySelector('.instractions-text');

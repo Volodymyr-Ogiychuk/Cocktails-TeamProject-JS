@@ -16,16 +16,14 @@ export function getCocktailByLetter(cocktailLetter) {
   });
 }
 
-export function getCocktailById(cocktId) {
+export function getCocktailById(cocktailId) {
   return fetch(
-    `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${cocktId}`
+    `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${cocktailId}`
   ).then(response => {
     if (!response.ok) throw new Error(response.status);
     return response.json();
   });
 }
-
-
 
 export function getIngrByName(ingrName) {
   return fetch(
@@ -53,14 +51,5 @@ export function getIngrImg(inrgName) {
   ).then(response => {
     if (!response.ok) throw new Error(response.status);
     return response.url;
-  });
-}
-
-export function getCocktailById(cocktailId) {
-  return fetch(
-    `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${cocktailId}`
-  ).then(response => {
-    if (!response.ok) throw new Error(response.status);
-    return response.json();
   });
 }
