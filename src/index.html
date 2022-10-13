@@ -15,7 +15,7 @@
     <header class="header">
       
       <div class="flex-box container">
-        <a href="#" class="logo" aria-label="logo"
+        <a href="./index.html" class="logo" aria-label="logo"
           ><img class="logo-one" src="./image/Logo.png" alt="icon">
           <img class="logo-two" src="./image/logo-icon.png.png" alt="icon"> 
         </a>
@@ -23,7 +23,7 @@
           <ul class="navi__list">
 
             <li class="navi__item">
-              <a class="navi__link" href=".#">Home</a>
+              <a class="navi__link" href="./index.html">Home</a>
             </li>
 
             <li class="navi__item">
@@ -328,6 +328,47 @@
             <use href="./image/symbol-defs.svg#icon-close-line"></use>
           </svg>
         </button>
+      </div>
+    </div>
+
+    <!-- Разметка модалки авторизации -->
+    <div class="back-drop-reg is-hidden">
+      <div class="reg-form-wrap">
+        <button class="reg-close-btn" type="button">X</button>
+        <h2 class="reg-form-title">Please log in or create new account</h2>
+        <form class="reg-form" id="registration-form">
+          <div class="reg-input-wrapper">
+            <input
+              class="reg-input"
+              type="text"
+              placeholder="Email"
+              name="email"
+              id="email"
+              required
+            />
+          </div>
+          <div class="reg-input-wrapper">
+            <input
+              class="reg-input"
+              type="text"
+              placeholder="Password"
+              name="password"
+              id="password"
+              required
+            />
+          </div>
+          <button class="reg-form-btn registration-btn" type="submit">
+            Registration
+          </button>
+          <div class="reg-btn-wrapper">
+            <button class="reg-form-btn signin-btn" type="submit">
+              Log In
+            </button>
+            <button class="reg-form-btn logout-btn" type="button">
+              Log Out
+            </button>
+          </div>
+        </form>
       </div>
     </div>
 
