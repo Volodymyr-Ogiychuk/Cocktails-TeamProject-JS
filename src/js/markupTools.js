@@ -8,14 +8,7 @@ export function renderDrinkMarkup(drinksArr) {
               <p class="cocktails__name" data-id="${idDrink}">${strDrink}</p>
               <div class="button-wrapper">
                 <button class="btn-lm" type="button">Learn more</button>
-                <button class="btn-add" type="button">Add to
-                  <svg class="icon__add" width="18" height="18">
-                    <use href="./image/symbol-defs.svg#icon-Heart"
-                        aria-label="img"
-                        role="button"
-                    ></use>
-                  </svg>
-                </button>
+                <button class="btn-add" type="button">Add to</button>
               </div>
             </li>`;
     })
