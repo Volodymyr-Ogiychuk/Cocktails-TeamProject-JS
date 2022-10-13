@@ -10,7 +10,7 @@ import { renderDrinkMarkup } from '../markupTools';
 const formByLetter = document.querySelector('.letter-list-first');
 const cocktList = document.querySelector('.cocktails__list');
 const cocktModalRef = document.querySelector('.modal__cocktails');
-const notFoundRef = document.querySelector('.is-hidden');
+const notFoundRef = document.querySelector('.not-found');
 const letterListRef = document.querySelector('.letter-list');
 const cocktSectRef = document.querySelector('.cocktails');
 
@@ -33,6 +33,7 @@ let arr = str.split("");
 function widthControl() {
     if (window.innerWidth <= 768) {
         cardsPerPage = 3;
+        formByLetter.classList.add('is-hidden')
     } else  if (window.innerWidth > 768 && window.innerWidth <= 1280) {
         cardsPerPage = 6;
     }
@@ -42,8 +43,10 @@ function widthControl() {
     window.addEventListener('resize', () => {
         
         if (window.innerWidth <= 768) {
+            formByLetter.classList.add('is-hidden')
             cardsPerPageAfterResize = 3;
-    } else  if (window.innerWidth > 768 && window.innerWidth <= 1280) {
+        } else if (window.innerWidth > 768 && window.innerWidth <= 1280) {
+            formByLetter.classList.remove('is-hidden')
             cardsPerPageAfterResize = 6;
     } else {
             cardsPerPageAfterResize = 9;
