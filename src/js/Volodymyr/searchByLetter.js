@@ -3,12 +3,15 @@ import { getCocktailByLetter } from '../getCocktails';
 import { getCocktailById } from '../getCocktails'; 
 import { getRandomCocktail } from '../getCocktails';
 import { getIngrByName } from '../getCocktails';
+import { renderDrinkMarkup } from '../markupTools';
 
 // const InfiniteScroll = require('infinite-scroll');
 
-const formByLetter = document.querySelector('p');
+const formByLetter = document.querySelector('.letter-list-first');
 const cocktList = document.querySelector('.cocktails__list');
 const cocktModalRef = document.querySelector('.modal__cocktails');
+const notFoundRef = document.querySelector('.not-found');
+const letterListRef = document.querySelector('.letter-list');
 
 let btnLetterRef = [];
 let letter = '';
@@ -19,16 +22,9 @@ let cocktId = '';
 let cardsPerPage = 9;
 let ingrMarkup = '';
 let ingrCardMarkup = '';
-let ingrBtnAddRemove = '';
 
 const str = 'abcdefghijklmnopqrstuvwxyz 1234567890';
 let arr = str.split("");
-
-// временная разметка
-
-const addList = '<ul class="letter-list"></ul>';
-formByLetter.insertAdjacentHTML('afterend', addList);
-const letterListRef = document.querySelector('.letter-list');
 
 // контроль ширины экрана
 
@@ -74,6 +70,7 @@ function createLetterList(arr) {
 
         })
             .join('');
+    formByLetter.insertAdjacentHTML('beforeend', markup);
     letterListRef.insertAdjacentHTML('beforeend', markup);
     btnLetterRef = document.querySelectorAll('.btn-letter');
        
@@ -87,11 +84,15 @@ function createRandomList() {
                 if (data.drinks !== null) {
                     cocktListLength = data.drinks.length;
                     randomDrinks.push(data.drinks[0]);
-                    renderCardsList(randomDrinks);
+                    const cardMarkup = renderDrinkMarkup(randomDrinks);
+                    cocktList.innerHTML = '';
+                    cocktList.insertAdjacentHTML('beforeend', cardMarkup);
                 } 
             });     
     }
-    renderCardsList(randomDrinks);
+    const cardMarkup = renderDrinkMarkup(randomDrinks);
+    cocktList.innerHTML = '';
+    cocktList.insertAdjacentHTML('beforeend', cardMarkup);
 };
 
 createLetterList(arr);
@@ -105,7 +106,9 @@ function fetch() {
             if (data.drinks !== null) {    
                 cocktListLength = data.drinks.length;
                 drinksList = data.drinks;
-                renderCardsList(drinksList);
+                const cardMarkup = renderDrinkMarkup(drinksList);
+                cocktList.innerHTML = '';
+                cocktList.insertAdjacentHTML('beforeend', cardMarkup);
             } else {
                 markupAlert();
                 }
@@ -128,37 +131,24 @@ const handleClick = (event => {
     fetch();
 });
 
-function renderCardsList (drinksList) {
-    const cardMarkup = drinksList.map(({ idDrink, strDrinkThumb, strDrink }) => {
-        
-    return `
-        <li>
-            <div>
-              <img src="${strDrinkThumb}" alt="${strDrink}" width="280">
-            </div>
-            <p data-id="${idDrink}">${strDrink}</p>
-            <button class="btn-lm" type="button">Learn more</button>
-            ${ingrBtnAddRemove}
-        </li>`;           
-    })
-        .join('');
-cocktList.innerHTML = '';   
-cocktList.insertAdjacentHTML('beforeend', cardMarkup);
-
-};
-
 function markupAlert() {
-    cocktList.innerHTML = ''; 
-    console.log(`Sorry, we didn't find any cocktail for you`);
-    cocktList.insertAdjacentHTML('beforeend', `
-        <div class="alert">
-        <p>Sorry, we didn't find any cocktail for you</p>
-        <img src="./images/frame.jpg" alt="Picture sorry">
+    cocktList.innerHTML = ''
+    cocktList.previousElementSibling.innerHTML = '';
+    notFoundRef.classList.remove('is-hidden');
+   
+    cocktList.previousElementSibling.insertAdjacentHTML('beforeend', `
+        
+        <h2 class="not-found__title">Sorry, we didn't find any cocktail for you</h2>
+        <div class="container">
+            <div class="images">
+                <img src="./image/photo.png" alt="">
+            </div>
         </div>
     `);
 };
 
 letterListRef.addEventListener('click', handleClick);
+formByLetter.addEventListener('click', handleClick);
 
 // модалка
 
@@ -176,11 +166,12 @@ function modalSelector() {
 
 function toggleModal(event) {
     const modal = document.querySelector("[data-modal]");
-
+    console.log('event.target', event.target);
+    console.log('event.target.previousElementSibling', event.target.parentNode.previousElementSibling);
     if (event.target.textContent !== 'Learn more') {
         return
     }
-    cocktId = event.target.previousElementSibling.dataset.id;
+    cocktId = event.target.parentNode.previousElementSibling.dataset.id;
     
     getCocktailById(cocktId)
         .then(data => {
@@ -224,21 +215,24 @@ function toggleModal(event) {
 function renderModalCockt(drinksList) {
     const cocktMarkup = drinksList.map(({ idDrink, strAlcoholic, strInstructions, strDrinkThumb, strDrink }) => {
     
-    return `
-        <h2 class="modal__heading">${strDrink}</h2>
+        return `
         <img src="${strDrinkThumb}" alt="${strDrink}" width=450px>
-        <h3>Ingredients</h3>
-        <p>Per coctail</p>
-        <ul>
+        <h2 class="modal__heading">${strDrink}</h2>
+        
+        <h3 class="compound__title">Ingredients</h3>
+        <p class="compound__text">Per coctail</p>
+         <ul class="cocktail-compound">
           ${ingrMarkup}
         </ul>
-    
-        <h3>Instruction:</h3>
-        <p>
+        <h3 class="cocktails__instractions">Instructions:</h3>
+        <p class="instractions-text" data-cockt-id="${idDrink}">
           ${strInstructions}
         </p>
 
-        ${ingrBtnAddRemove}
+        <div class="button-wrapper">
+          <button class="btn-add-fav" type="button">Add to favorite</button>
+          <button class="btn-re-fav" type="button">Remove from favorite</button>
+        </div>
     
         <button
           type="button"
@@ -246,8 +240,8 @@ function renderModalCockt(drinksList) {
           data-modal-close
           aria-label="close"
         >
-          <svg class="modal__icon" width="32" height="32">
-            <!-- <use href=""></use> -->
+          <svg class="modal__icon" width="25" height="25">
+            <use href="./image/symbol-defs.svg#icon-close-line"></use>
           </svg>
         </button>
         `;           
@@ -272,14 +266,13 @@ function ingrModalOpen(event) {
     getIngrByName(ingrName).then(data => {
        
         const ingrData = data.ingredients;
-        ingrCardMarkup = ingrData.map(({ strIngredient, strDescription, strType, strAlcohol, strABV }) => {
+        ingrCardMarkup = ingrData.map(({ idIngredient, strDescription, strType, strABV }) => {
             
-            
+            console.log('ingrData', ingrData);
             let ingrType = 'Non-specific';
             let ingrDescr = 'No description';
             let ingrAlcBV = '';
             let ingrStartDescr = '';
-            let ingrBtnAddRemove = '';
 
             if (strDescription !== null) {
                 ingrStartDescr = strDescription.split(" ")[0];
@@ -287,12 +280,11 @@ function ingrModalOpen(event) {
             };
             
             if (strType !== null) {
-                ingrType = strType;
-                
+                ingrType = strType;   
             };
             
             if (strABV !== null) {
-                ingrAlcBV = `<li>Alcohol by volume: ${strABV}</li>`;
+                ingrAlcBV = `<li class="compound__elem">Alcohol by volume: ${strABV}</li>`;
             }
           
             //  проверка на наличие в Favorites
@@ -305,12 +297,15 @@ function ingrModalOpen(event) {
           <span>${ingrStartDescr}</span> ${ingrDescr}
         </p>
     
-        <ul>
-          <li>Type: ${ingrType}</li>
+        <ul class="ingredient__compound">
+          <li class="compound__elem">Type: ${ingrType}</li>
            ${ingrAlcBV}
         </ul>
     
-        <button type="button">${ingrBtnAddRemove}</button>
+        <div class="button-wrapper" data-ingr-id="${idIngredient}">
+          <button class="btn-add-fav" type="button">Add to favorite</button>
+          <button class="btn-re-fav" type="button">Remove from favorite</button>
+        </div>
     
         <button
           type="button"
@@ -318,8 +313,8 @@ function ingrModalOpen(event) {
           data-modal-close
           aria-label="close"
         >
-          <svg class="modal__icon" width="32" height="32">
-            <!-- <use href=""></use> -->
+          <svg class="modal__icon" width="25" height="25">
+            <use href="./image/symbol-defs.svg#icon-close-line"></use>
           </svg>
         </button>
             `;
