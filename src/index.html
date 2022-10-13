@@ -38,12 +38,12 @@
                 <div class="hover-box">
                   <ul class="link__list">
                     <li>
-                      <a class="link-elem" href="./favorite-cocktail.html"
+                      <a class="link-elem js-fav-cocktail" href="./favorite-cocktail.html"
                         >Favorite cocktails</a
                       >
                     </li>
                     <li>
-                      <a class="link-elem" href="./favorite-ingredients.html"
+                      <a class="link-elem js-fav-ingr" href="./favorite-ingredients.html"
                         >Favorite ingredients</a
                       >
                     </li>
@@ -138,45 +138,46 @@
             <h1 class="hero__title">
               A party without cocktails is not like a party
             </h1>
-            <p class="hero__text">Search your favorite cocktail by ABC</p>
-            <ul class="letter-list-first"></ul>
+            <picture>
+              <source
+                srcset="
+                  ./image/coctaile-desk.png    1x,
+                  ./image/coctaile-desk@2x.png 2x
+                "
+                media="(min-width: 1200px)"
+              />
+              <source
+                srcset="
+                  ./image/coctaile-tablet.png    1x,
+                  ./image/coctaile-tablet@2x.png 2x
+                "
+                media="(min-width: 768px)"
+              />
+              <img
+                class="hero-img"
+                srcset="
+                  ./image/coctail-mobile.png    1x,
+                  ./image/coctail-mobile@2x.png 2x
+                "
+                src="./image/coctail-mobile.png"
+                alt="cocktail"
+              />
+            </picture>
 
             <div class="app">
+              <p class="hero__text">Search your favorite cocktail by ABC</p>
+              <ul class="letter-list-first"></ul>
+
               <div class="wrap">
                 <div id="select"></div>
               </div>
+              <ul class="letter-list">
+                <!-- <li class="letter"></li> -->
+              </ul>
             </div>
 
-            <ul class="letter-list">
-              <!-- <li class="letter"></li> -->
-            </ul>
           </div>
-
-          <picture>
-            <source
-              srcset="
-                ./image/coctaile-desk.png    1x,
-                ./image/coctaile-desk@2x.png 2x
-              "
-              media="(min-width: 1200px)"
-            />
-            <source
-              srcset="
-                ./image/coctaile-tablet.png    1x,
-                ./image/coctaile-tablet@2x.png 2x
-              "
-              media="(min-width: 768px)"
-            />
-            <img
-              class="hero-img"
-              srcset="
-                ./image/coctail-mobile.png    1x,
-                ./image/coctail-mobile@2x.png 2x
-              "
-              src="./image/coctail-mobile.png"
-              alt="cocktail"
-            />
-          </picture>
+          
         </div>
       </section>
 
@@ -217,13 +218,13 @@
                 <button class="btn-lm" type="button">Learn more</button>
                 <button class="btn-add" type="button">
                   Add to
-                  <svg class="icon__add" width="18" height="18">
+                  <!-- <svg class="icon__add" width="18" height="18">
                     <use
                       href="./image/symbol-defs.svg#icon-Heart"
                       aria-label="img"
                       role="button"
                     ></use>
-                  </svg>
+                  </svg> -->
                 </button>
               </div>
             </li>
@@ -262,7 +263,7 @@
             Sorry, we didn't find any cocktail for you
           </h2>
           <div class="images">
-            <img src="./image/photo.png" alt="" />
+            <img class="img-bag" src="./image/photo.png" alt="" />
           </div>
         </div>
       </section>
