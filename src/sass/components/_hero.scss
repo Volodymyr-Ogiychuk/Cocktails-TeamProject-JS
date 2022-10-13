@@ -1,8 +1,9 @@
 .hero-flex{
-    display: flex;
-    flex-wrap: wrap;
+    
 
     @media screen and (min-width: $tablet) {
+        display: flex;
+        flex-wrap: wrap;
         column-gap: 21px;  
     }
 
@@ -56,6 +57,9 @@
 
     @media screen and (min-width: $tablet) {
         width: 336px;
+        position: absolute;
+        top: 71px;
+        right: 23px;
     }
 
     @media screen and (min-width: $desktop) {
@@ -79,7 +83,7 @@
     }
 }
 
-.letter-list{
+.letter-list-first{
     text-align: center;
 
     @media screen and(min-width:$tablet){
@@ -105,8 +109,11 @@
 }
 
 .letter{
-    width: 24px;
-    height: 25px;
+    @media screen and(min-width:$tablet){
+        width: 24px;
+        height: 25px;
+    }
+    
 
     @media screen and(min-width:$desktop){
         width: 40px;
@@ -117,6 +124,9 @@
 .btn-letter{
     text-align: center;
     text-transform: uppercase;
+    border: none;
+    background-color: transparent;
+    color: inherit;
 
     @media screen and(min-width:$tablet){
         // width: 24px;
@@ -131,24 +141,27 @@
         color: #5F6775;
         background-color: transparent;
         border: none;
-    }
-    
 
-    &:hover,
-    &:focus{
-        color: #FD5103;
+        &:hover,
+        &:focus{
+            color: #FD5103;
+        
+        }
     }
+      
 }
 
 // ABC mobil select!!!!!!!
 
-.add{
-    padding-top: 5rem;
-    display: flex;
+.app{
+    position: relative;
     justify-content: center;
 }
 
 .wrap{
+    position: absolute;
+    top: 41px;
+    right: 35%;
     width: 93px;
 }
 

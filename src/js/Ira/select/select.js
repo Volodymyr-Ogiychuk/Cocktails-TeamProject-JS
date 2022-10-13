@@ -1,8 +1,8 @@
 
 
-const getRender = () => {
+const getRender = (placeholder) => {
     return `
-    <div class="select__input" data-type="input">A<i class="fa fa-chevron-down" aria-hidden="true" data-type="arrow"></i></div>
+    <div class="select__input" data-type="input"><span>${placeholder}</span><i class="fa fa-chevron-down" aria-hidden="true" data-type="arrow"></i></div>
     <div class="select__dropdown">
 
       <ul class="letter-list">
@@ -15,13 +15,18 @@ const getRender = () => {
 export class Select {
     constructor(selector, options) {
         this.$el = document.querySelector(selector)
+        this.options = options
+
+
         this.#render()
         this.#setup()
+
     }
 
     #render() {
+        const {placeholder} = this.options
         this.$el.classList.add('select');
-        this.$el.innerHTML = getRender();
+        this.$el.innerHTML = getRender(placeholder);
     }
 
     #setup() {

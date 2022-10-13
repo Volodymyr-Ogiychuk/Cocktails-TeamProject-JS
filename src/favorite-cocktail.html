@@ -26,8 +26,8 @@
               <div href="#" class="tip">
                 <div class="hover-box">
                   <ul class="link__list">
-                  <li><a class="link-elem" href="./favorite-cocktail.html">Favorite cocktails</a></li>
-                  <li><a class="link-elem" href="./favorite-ingredients.html">Favorite ingredients</a></li>
+                  <li><a class="link-elem js-fav-cocktail" href="./favorite-cocktail.html">Favorite cocktails</a></li>
+                  <li><a class="link-elem js-fav-ingr" href="./favorite-ingredients.html">Favorite ingredients</a></li>
                 </ul></div>
                 Favorite
                 <svg class="chevron" width="24" height="24">
@@ -75,32 +75,28 @@
         </div>
 
         <!-- Разметка переключателя темы -->
-  <div class="theme-switch">
-    <!-- <svg class="theme-switch__icon" role="img" aria-label="Иконка солнца">
-      <use href="./images/sprite.svg#sun"></use>
-    </svg> -->
+        <div class="theme-switch">
+          <h3 class="theme__title-light">Light</h3>
 
-    <div class="theme-switch__control">
-      <input
-        class="theme-switch__toggle"
-        type="checkbox"
-        name="theme"
-        id="theme-switch-toggle"
-        aria-label="Переключить между тёмной и светлой темой"
-      />
-      <label
-        aria-hidden="true"
-        class="theme-switch__track"
-        for="theme-switch-toggle"
-      >
-      </label>
-      <div aria-hidden="true" class="theme-switch__marker"></div>
-    </div>
+          <div class="theme-switch__control">
+            <input
+              class="theme-switch__toggle"
+              type="checkbox"
+              name="theme"
+              id="theme-switch-toggle"
+              aria-label="Переключить между тёмной и светлой темой"
+            />
+            <label
+              aria-hidden="true"
+              class="theme-switch__track"
+              for="theme-switch-toggle"
+            >
+            </label>
+            <div aria-hidden="true" class="theme-switch__marker"></div>
+          </div>
 
-    <!-- <svg class="theme-switch__icon" aria-label="Иконка луны">
-      <use href="./images/sprite.svg#moon"></use>
-    </svg> -->
-  </div>
+          <h3 class="theme__title-dark">Dark</h3>
+        </div>
 </div>
     </header>
 
@@ -115,12 +111,6 @@
               <div class="button-wrapper">
                 <button class="btn-lm" type="button">Learn more</button>
                 <button class="btn-add" type="button">Add to
-                  <svg class="icon__add" width="18" height="18">
-                    <use href="./image/symbol-defs.svg#icon-Heart"
-                        aria-label="img"
-                        role="button"
-                    ></use>
-                  </svg>
                 </button>
               </div>
             </li>
@@ -131,12 +121,7 @@
               <div class="button-wrapper">
                 <button class="btn-lm" type="button">Learn more</button>
                 <button class="btn-add" type="button">Add to
-                  <svg class="icon__add" width="18" height="18">
-                    <use href="./image/symbol-defs.svg#icon-Heart"
-                        aria-label="img"
-                        role="button"
-                    ></use>
-                  </svg>
+                  
                 </button>
               </div>
             </li>
@@ -147,12 +132,7 @@
               <div class="button-wrapper">
                 <button class="btn-lm" type="button">Learn more</button>
                 <button class="btn-add" type="button">Add to
-                  <svg class="icon__add" width="18" height="18">
-                    <use href="./image/symbol-defs.svg#icon-Heart"
-                        aria-label="img"
-                        role="button"
-                    ></use>
-                  </svg>
+                  
                 </button>
               </div>
             </li>
