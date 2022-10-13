@@ -3,7 +3,7 @@ export function renderDrinkMarkup(drinksArr) {
     .map(({ strDrink, strDrinkThumb, idDrink }) => {
       return `<li class="cocktails__card">
               <div>
-                <img src="${strDrinkThumb}" alt="${strDrink}" width="280">
+                <img class="cocktails__image" src="${strDrinkThumb}" alt="${strDrink}" width="280">
               </div>
               <p class="cocktails__name" data-id="${idDrink}">${strDrink}</p>
               <div class="button-wrapper">
