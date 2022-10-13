@@ -10,15 +10,16 @@
   font-size: 22px;
   line-height: 191%;
   text-align: center;
-  color: #202025;
+  color: inherit;
   margin-bottom: 60px;
 }
+
 
 .cocktails__card {
   text-align: center;
   margin: auto;
   padding-bottom: 20px;
-  width: 100%;
+  max-width: 395px;
   border: 1px solid #fd5103;
   border-radius: 4px;
   transition: box-shadow $timing-function;
@@ -47,8 +48,9 @@
   font-size: 26px;
   line-height: 162%;
   text-align: center;
-  color: #202025;
+  color: inherit
 }
+
 
 .btn-lm {
   display: inline-flex;
@@ -73,15 +75,29 @@
 
   transition: box-shadow $timing-function;
     
-  &:hover, 
-  &:focus {
-  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12),
+  &:hover{
+    background-color: #ffffff;
+    color: #fd5103;
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12),
     0px 4px 4px rgba(0, 0, 0, 0.06),
     1px 4px 6px rgba(0, 0, 0, 0.16);
   }
 
+  &:active,
+  &:focus{
+    background-color: #fd5103;
+    color: #FCFCFC;
+  }
+
 }
 
+.heard{
+  display: none;
+
+  &:active{
+    display: block;
+  }
+}
 
 .btn-add {
   display: inline-flex;
@@ -133,5 +149,10 @@
 
   text-align: center;
 
-  color: #202025;
+  color: indianred;
+}
+
+.cocktails__image{
+  width: 100%;
+
 }

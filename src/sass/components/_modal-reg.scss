@@ -1,0 +1,113 @@
+.back-drop-reg.is-hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1), visibility 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  ​
+  .back-drop-reg.is-hidden .reg-form-wrap {
+    transform: translate(-50%, -50%) scale(0.8);
+  }
+  ​
+  .back-drop-reg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    padding: 94px 15px;
+    margin: 0 auto;
+    background-color: rgba(0, 0, 0, 0.2);
+    overflow-y: scroll;
+  }
+  ​
+  .reg-form-wrap {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1);
+    width: 450px;
+    background-color: #fff;
+    box-shadow: 0px 1px 3px rgb(0 0 0 / 12%), 0px 1px 1px rgb(0 0 0 / 14%), 0px 2px 1px rgb(0 0 0 / 20%);
+    border-radius: 4px;
+    transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  ​
+  .reg-form {
+    padding: 40px;
+  }
+  ​
+  .reg-form-title {
+    text-align: center;
+    color: #202025;
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 191%;
+    padding: 40px;
+    padding-bottom: 0;
+  }
+  ​
+  .reg-close-btn {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 1px solid rgba(0, 0, 0, .1);
+    background-color: #fff;
+    cursor: pointer;
+    transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  ​
+  .reg-input-wrapper {
+  margin-bottom: 10px;
+  text-align: center;
+  }
+  ​
+  .reg-input {
+    padding: 5px 15px;
+    height: 40px;
+    font-size: 19px;
+    width: 100%;
+  }
+  ​
+  .reg-form-btn {
+    padding: 10px;
+    background-color: #FD5103;
+    border: 1px solid transparent;
+    cursor: pointer;
+    color: #fff;
+    width: 80px;
+    font-size: 15px;
+  ​
+    &:hover {
+      background-color: #fff;
+      border: 1px solid #FD5103;
+      color: #000;
+    }
+  }
+  ​
+  .registration-btn {
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 10px;
+    margin-top: 20px;
+    width: 170px;
+  }
+  ​
+  .reg-btn-wrapper {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+  }
+  ​
+  .success-auth {
+    font-size: 22px;
+    color: rgb(1, 167, 1);
+    text-align: center;
+    vertical-align: middle;
+    padding-top: 30px;
+    height: 100px;
+  }
