@@ -6,20 +6,13 @@ import {
   onAuthStateChanged,
   signOut,
 } from 'firebase/auth';
-import { addToFavorite, getFavIngr, getFavDrink } from './DB';
+import { getFavIngr, getFavDrink } from './DB';
 import { getCocktailById, getIngrById } from '../getCocktails';
 import { renderDrinkMarkup, renderIngredientsMarkup } from '../markupTools';
-import {
-  getDatabase,
-  ref,
-  set,
-  remove,
-  child,
-  get,
-  onValue,
-} from 'firebase/database';
-import { save, load } from '../Vitalik/storage';
+import { getDatabase, ref, set } from 'firebase/database';
+import { load } from '../Vitalik/storage';
 
+// Firebase config object
 const firebaseConfig = {
   apiKey: 'AIzaSyARB7IoC0JprBpfrU3Ehfw4t6yt6QUbzT0',
   authDomain: 'cocktails-teamproject.firebaseapp.com',
@@ -44,9 +37,10 @@ const auth = getAuth(app);
 const authBtnRef = document.querySelector('.auth-btn');
 const regFormRef = document.querySelector('#registration-form');
 const regBtnRef = document.querySelector('.registration-btn');
+const regFormTitleRef = document.querySelector('.reg-form-title');
+const backdropRef = document.querySelector('.back-drop-reg');
 const signinBthRef = document.querySelector('.signin-btn');
 const logoutBtnRef = document.querySelector('.logout-btn');
-const regFormTitleRef = document.querySelector('.reg-form-title');
 const cocktailsListRef = document.querySelector('.cocktails__list');
 const searchFailRef = document.querySelector('.not-found');
 const cocktailsTitleRef = document.querySelector('.cocktails__title');
@@ -55,6 +49,7 @@ const cocktailsTitleRef = document.querySelector('.cocktails__title');
 regBtnRef.addEventListener('click', onRegClick);
 signinBthRef.addEventListener('click', onSignInClick);
 logoutBtnRef.addEventListener('click', onLogOutClick);
+authBtnRef.addEventListener('click', onAuthBtnClick);
 
 function onRegClick(e) {
   e.preventDefault();
@@ -105,6 +100,27 @@ function onLogOutClick(e) {
     });
 }
 
+function onAuthBtnClick() {
+  backdropRef.classList.remove('is-hide');
+}
+
+// Close modal by button
+document
+  .querySelector('.reg-close-btn')
+  .addEventListener('click', closeAuthModal);
+
+function closeAuthModal() {
+  backdropRef.classList.add('is-hide');
+}
+
+// Close modal on backdrop click
+backdropRef.addEventListener('click', e => {
+  if (e.target === e.currentTarget) {
+    closeAuthModal();
+  }
+});
+
+// On auth status change logic
 let uid = '';
 onAuthStateChanged(auth, user => {
   if (user) {
@@ -128,7 +144,7 @@ function onSignOut() {
   regFormTitleRef.classList.add('success-auth');
   document.querySelector('.reg-form').style.display = 'none';
   setTimeout(() => {
-    document.querySelector('.back-drop-reg').classList.add('is-hide');
+    backdropRef.classList.add('is-hide');
     regFormTitleRef.textContent = 'Please log in or create new account';
     regFormTitleRef.classList.remove('success-auth');
     document.querySelector('.reg-form').style.display = 'block';
@@ -140,7 +156,7 @@ function onSignIn() {
   regFormTitleRef.classList.add('success-auth');
   document.querySelector('.reg-form').style.display = 'none';
   setTimeout(() => {
-    document.querySelector('.back-drop-reg').classList.add('is-hide');
+    backdropRef.classList.add('is-hide');
     regFormTitleRef.textContent = 'Please log in or create new account';
     regFormTitleRef.classList.remove('success-auth');
     document.querySelector('.reg-form').style.display = 'block';
@@ -170,7 +186,6 @@ function onAddIngrClick(e) {
 }
 
 // On page change
-
 linkFavDrinkRef.addEventListener('click', e => {
   e.preventDefault();
 
@@ -243,16 +258,6 @@ linkFavIngrRef.addEventListener('click', e => {
     });
 });
 
-authBtnRef.addEventListener('click', onAuthBtnClick);
-
-function onAuthBtnClick() {
-  document.querySelector('.back-drop-reg').classList.remove('is-hide');
-}
-
-document.querySelector('.reg-close-btn').addEventListener('click', () => {
-  document.querySelector('.back-drop-reg').classList.add('is-hide');
-});
-
 //DataBase methods
 
 function synchronizeFavDrinks(uid) {
@@ -260,13 +265,6 @@ function synchronizeFavDrinks(uid) {
     savedDrinks: load('cocktails'),
   });
 }
-
-// function getFavDrinks(uid) {
-//   const db = ref(database, 'favorite/' + uid);
-//   return onValue(db, snapshot => {
-//     console.log(snapshot.val());
-//   });
-// }
 
 function synchronizeFavIngr(uid) {
   set(ref(database, 'favoriteIngr/' + uid), {
