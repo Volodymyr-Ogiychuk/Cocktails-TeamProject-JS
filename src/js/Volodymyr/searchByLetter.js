@@ -4,6 +4,9 @@ import { getCocktailById } from '../getCocktails';
 import { getRandomCocktail } from '../getCocktails';
 import { getIngrByName } from '../getCocktails';
 import { renderDrinkMarkup } from '../markupTools';
+import { nameCocktails } from '../Vitalik/favoriteCocktails';
+import { arrIdIngridients } from '../Vitalik/favoriteIngridients';
+import { load } from '../Vitalik/storage';
 
 // const InfiniteScroll = require('infinite-scroll');
 
@@ -23,10 +26,13 @@ let cocktId = '';
 let cardsPerPage = 9;
 let ingrMarkup = '';
 let ingrCardMarkup = '';
-let cocktListLength = 0;
+
 
 const str = 'abcdefghijklmnopqrstuvwxyz 1234567890';
 let arr = str.split("");
+let arrIngreds = load('ingridients');
+let arrCocktls = load('cocktails');;
+
 
 // контроль ширины экрана
 
@@ -180,8 +186,6 @@ function modalSelector() {
 
 function toggleModal(event) {
     const modal = document.querySelector("[data-modal]");
-    console.log('event.target', event.target);
-    console.log('event.target.previousElementSibling', event.target.parentNode.previousElementSibling);
     if (event.target.textContent !== 'Learn more') {
         return
     }
@@ -214,7 +218,8 @@ function toggleModal(event) {
                 }
     
                 for (let i = 0; i <= Object.keys(ingrObj).length - 1; i += 1) {
-                    ingrMarkup += `<li><a href="" data-ingredient="${Object.values(ingrObj)[i]}">${Object.values(dozsObj)[i]} ${Object.values(ingrObj)[i]}</a></li>
+                    // console.log('Object.values(ingrObj)[i]', Object.values(ingrObj)[i]);
+                    ingrMarkup += `<li><a class="compound__elem" href="" data-ingredient="${Object.values(ingrObj)[i]}">${Object.values(dozsObj)[i]} ${Object.values(ingrObj)[i]}</a></li>
                     `}
 
                 renderModalCockt(drinksList);
@@ -227,26 +232,39 @@ function toggleModal(event) {
 };
 
 function renderModalCockt(drinksList) {
+
     
-    const cocktMarkup = drinksList.map(({ idDrink, strAlcoholic, strInstructions, strDrinkThumb, strDrink }) => {
-    
+    let renderBtn = '';
+    const cocktMarkup = drinksList.map(({ idDrink, strInstructions, strDrinkThumb, strDrink }) => {
+        //  || nameCocktails.includes(idDrink)
+        if (arrCocktls.includes(idDrink)) {
+            renderBtn = '<button class="btn-re-fav" type="button">Remove from favorite</button>';
+        } else {
+            renderBtn = '<button class="btn-add-fav" type="button">Add to favorite</button>';
+            } 
+
         return `
-        <img src="${strDrinkThumb}" alt="${strDrink}" width=450px>
-        <h2 class="modal__heading">${strDrink}</h2>
-        
-        <h3 class="compound__title">Ingredients</h3>
-        <p class="compound__text">Per coctail</p>
-         <ul class="cocktail-compound">
-          ${ingrMarkup}
-        </ul>
-        <h3 class="cocktails__instractions">Instructions:</h3>
-        <p class="instractions-text" data-cockt-id="${idDrink}">
+
+        <div class="modal__path">
+          <div class="path__box">
+            <h2 class="modal__heading">${strDrink}</h3>
+            
+              <h3 class="compound__title">Ingredients</h3>
+              <p class="compound__text">Per cocktail</p>
+            <ul class="cocktail-compound">
+              ${ingrMarkup}
+            </ul>
+          </div>
+          <img class="cocktails__foto" src="${strDrinkThumb}" alt="${strDrink}"/>
+        </div>
+
+        <h2 class="cocktails__instractions">Instructions:</h2>
+        <p class="instractions-text" data-id="${idDrink}">
           ${strInstructions}
         </p>
 
         <div class="button-wrapper">
-          <button class="btn-add-fav" type="button">Add to favorite</button>
-          <button class="btn-re-fav" type="button">Remove from favorite</button>
+          ${renderBtn}
         </div>
     
         <button
@@ -266,24 +284,21 @@ function renderModalCockt(drinksList) {
     cocktModalRef.innerHTML = '';   
     cocktModalRef.insertAdjacentHTML('beforeend', cocktMarkup);
     ingrMarkup = '';
-    const ingrRef = document.querySelector('.modal__cocktails');
-    ingrRef.addEventListener('click', ingrModalOpen)
+    const ingrRef = document.querySelector('.cocktail-compound');
+    ingrRef.addEventListener('click', ingrModalOpen);
+
 }
 
 // Вторая модалка
 
 function ingrModalOpen(event) {
     event.preventDefault();
-    const modal = document.querySelector(".modal__cocktails");
     const ingrName = event.target.dataset.ingredient;
    
-
     getIngrByName(ingrName).then(data => {
-       
         const ingrData = data.ingredients;
         ingrCardMarkup = ingrData.map(({ idIngredient, strDescription, strType, strABV }) => {
             
-            console.log('ingrData', ingrData);
             let ingrType = 'Non-specific';
             let ingrDescr = 'No description';
             let ingrAlcBV = '';
@@ -301,15 +316,20 @@ function ingrModalOpen(event) {
             if (strABV !== null) {
                 ingrAlcBV = `<li class="compound__elem">Alcohol by volume: ${strABV}</li>`;
             }
-          
-            //  проверка на наличие в Favorites
+            //  || arrIdIngridients.includes(idIngredient)
+            if (arrIngreds.includes(idIngredient)) {
+                renderBtn = '<button class="btn-re-fav" type="button">Remove from favorite</button>';
+            } else {
+                renderBtn = '<button class="btn-add-fav" type="button">Add to favorite</button>';
+            }
         
-        return `
+            return `
+        <div class="modal__title">
             <h2 class="modal__heading">${ingrName}</h2>
-    
-        <h3>${ingrType}</h3>
+            <h3 class="ingredient__title">${ingrType}</h3>
+        </div>
         <p>
-          <span>${ingrStartDescr}</span> ${ingrDescr}
+          <span class="ingredien__text--bald">${ingrStartDescr}</span> ${ingrDescr}
         </p>
     
         <ul class="ingredient__compound">
@@ -318,8 +338,7 @@ function ingrModalOpen(event) {
         </ul>
     
         <div class="button-wrapper" data-ingr="${idIngredient}">
-          <button class="btn-add-fav" type="button">Add to favorite</button>
-          <button class="btn-re-fav" type="button">Remove from favorite</button>
+          ${renderBtn}
         </div>
     
         <button
@@ -344,6 +363,9 @@ function ingrModalOpen(event) {
     });
 
 };
-    
+
 modalSelector();
+
+
+
 
