@@ -10,8 +10,9 @@ import { renderDrinkMarkup } from '../markupTools';
 const formByLetter = document.querySelector('.letter-list-first');
 const cocktList = document.querySelector('.cocktails__list');
 const cocktModalRef = document.querySelector('.modal__cocktails');
-const notFoundRef = document.querySelector('.not-found');
+const notFoundRef = document.querySelector('.is-hidden');
 const letterListRef = document.querySelector('.letter-list');
+const cocktSectRef = document.querySelector('.cocktails');
 
 let btnLetterRef = [];
 let letter = '';
@@ -78,7 +79,9 @@ function createLetterList(arr) {
 };
 
 function createRandomList() {
+    
     cocktList.innerHTML = '';
+    
         for (let i = 1; i <= cardsPerPage; i += 1) {
             getRandomCocktail()
             .then(data => {
@@ -91,6 +94,7 @@ function createRandomList() {
                 } 
             });     
     }
+    
     const cardMarkup = renderDrinkMarkup(randomDrinks);
     cocktList.innerHTML = '';
     cocktList.insertAdjacentHTML('beforeend', cardMarkup);
@@ -104,7 +108,9 @@ function fetch() {
     if (letter !== '') {
         return getCocktailByLetter(letter)
             .then(data => {
-            if (data.drinks !== null) {    
+                if (data.drinks !== null) {   
+                    cocktSectRef.classList.remove('visually-hidden');
+                    notFoundRef.classList.add('not-found');
                 cocktListLength = data.drinks.length;
                 drinksList = data.drinks;
                 const cardMarkup = renderDrinkMarkup(drinksList);
@@ -133,19 +139,23 @@ const handleClick = (event => {
 });
 
 function markupAlert() {
-    cocktList.innerHTML = ''
-    cocktList.previousElementSibling.innerHTML = '';
-    notFoundRef.classList.remove('is-hidden');
+    // cocktList.innerHTML = ''
+    cocktSectRef.classList.add('visually-hidden')
+    notFoundRef.classList.remove('not-found');
+
+    // cocktList.innerHTML = ''
+    // cocktList.previousElementSibling.innerHTML = '';
+    
    
-    cocktList.previousElementSibling.insertAdjacentHTML('beforeend', `
+    // cocktList.previousElementSibling.insertAdjacentHTML('beforeend', `
         
-        <h2 class="not-found__title">Sorry, we didn't find any cocktail for you</h2>
-        <div class="container">
-            <div class="images">
-                <img src="./image/photo.png" alt="">
-            </div>
-        </div>
-    `);
+    //     <h2 class="not-found__title">Sorry, we didn't find any cocktail for you</h2>
+    //     <div class="container">
+    //         <div class="images">
+    //             <img src="./image/photo.png" alt="">
+    //         </div>
+    //     </div>
+    // `);
 };
 
 letterListRef.addEventListener('click', handleClick);
@@ -214,6 +224,7 @@ function toggleModal(event) {
 };
 
 function renderModalCockt(drinksList) {
+    
     const cocktMarkup = drinksList.map(({ idDrink, strAlcoholic, strInstructions, strDrinkThumb, strDrink }) => {
     
         return `
@@ -303,7 +314,7 @@ function ingrModalOpen(event) {
            ${ingrAlcBV}
         </ul>
     
-        <div class="button-wrapper" data-ingr-id="${idIngredient}">
+        <div class="button-wrapper" data-ingr="${idIngredient}">
           <button class="btn-add-fav" type="button">Add to favorite</button>
           <button class="btn-re-fav" type="button">Remove from favorite</button>
         </div>
