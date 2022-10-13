@@ -22,6 +22,7 @@ let cocktId = '';
 let cardsPerPage = 9;
 let ingrMarkup = '';
 let ingrCardMarkup = '';
+let cocktListLength = 0;
 
 const str = 'abcdefghijklmnopqrstuvwxyz 1234567890';
 let arr = str.split("");
