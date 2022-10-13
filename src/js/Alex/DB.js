@@ -21,6 +21,12 @@ export function getFavDrink(uid) {
   ).then(resp => resp.json().then(data => Object.values(data)));
 }
 
+export function getFavIngr(uid) {
+  return fetch(
+    `https://cocktails-teamproject-default-rtdb.europe-west1.firebasedatabase.app/favoriteIngr/${uid}.json`
+  ).then(resp => resp.json().then(data => Object.values(data)));
+}
+
 // // import { save, load } from './storage';
 // let nameCocktails = [];
 // const COCKTAILS_STORAGE_KEY = 'cocktails';
