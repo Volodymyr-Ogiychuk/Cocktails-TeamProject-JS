@@ -19,6 +19,13 @@ body.dark-theme {
 .theme-switch {
   display: flex;
   align-items: center;
+  width: 148px;
+  height: 24px;
+
+  @media screen and(min-width:$tablet){
+    width: 248px;
+    height: 40px;
+  }
 }
 
 .theme-switch__icon {

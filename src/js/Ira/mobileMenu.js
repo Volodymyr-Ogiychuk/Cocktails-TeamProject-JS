@@ -41,11 +41,11 @@
     if (!isMenuOpen & window.innerWidth > 768 && window.innerWidth <= 1280) {
         form.style.display = "none";
         teme.style.display = "flex";
-        // box.style.flexDirection = "row-reverse";
+        
     } else{
       form.style.display = "flex";
       teme.style.display = "none";
-      // box.style.flexDirection = "row";
+     
     }
   };
 
