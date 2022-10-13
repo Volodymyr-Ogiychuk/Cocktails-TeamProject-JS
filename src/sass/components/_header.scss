@@ -39,7 +39,7 @@
     @media screen and (max-width:$desktop){
         
         position: absolute;
-        top: 61px;
+        top: 100px;
         left: 0;
 
         height: 100vh;
@@ -121,6 +121,8 @@
     margin-top: 5px;
 
     @media screen and(min-width:$tablet){
+       width: 288px;
+       height: 40px;
         display: flex;
         border: 1px solid #FD5103;
         border-radius: 4px;
@@ -143,9 +145,10 @@
 }
 
 .search-form.show{
-    position: absolute;
+    // position: absolute;
     top: 63px;
-    left: 62px;
+    left: 50%;
+    transform: translate(-50%, 0);
     z-index: 1;
 
     border: 1px solid #FD5103;
@@ -155,8 +158,8 @@
    height: 40px;
    transform: none;
 
-//    @media screen and(max-width:$mobile & min-width:$tablet){
-//     left: 180px;
+//    @media screen and(max-width:$mobile) and (min-width:$tablet){
+//         left: 180px;
 //     }
 }
 
@@ -168,6 +171,7 @@
 }
 
 .btn{
+    height: 39px;
 
     border: none;
     border-right: 1px solid #FD5103;
@@ -219,8 +223,8 @@
 
 .menu-btn{
     position: absolute;
-    top: 5px;
-    right: 14px;
+    top: 12px;
+    right: 16px;
     border: none;
     cursor: pointer;
     background-color: transparent;

@@ -100,12 +100,14 @@
 }
 
 .btn-add {
+  position: relative;
   display: inline-flex;
   text-align: center;
 
   padding: 8px 16px;
 
   background-color: transparent;
+
   color: #fe7031;
   border: 1px solid #fe7031;
   border-radius: 4px;
@@ -120,14 +122,34 @@
   cursor: pointer;
 
   transition: box-shadow $timing-function;
+
+  &::before {
+    position: absolute;
+    content: '';
+    top: 95%;
+    left: 75%;
+    transform: translate(-50%, -150%);
+    width: 21px;
+    height: 19px;
+    background-image: url(../image/Heart.jpg);
+    background-repeat: no-repeat;
+  }
+
+  &:hover::after,
+  &:focus::after{
+    position: absolute;
     
-  &:hover, 
-  &:focus {
-  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12),
-    0px 4px 4px rgba(0, 0, 0, 0.06),
-    1px 4px 6px rgba(0, 0, 0, 0.16);
+    content: '';
+    top: 95%;
+    left: 75%;
+    transform: translate(-50%, -150%);
+    width: 21px;
+    height: 19px;
+    background-image: url(../image/Heart2.jpg);
+    background-repeat: no-repeat;
   }
 }
+
 
 .icon__add{
   margin-left: 10px;
