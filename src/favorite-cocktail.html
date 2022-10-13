@@ -9,16 +9,19 @@
   </head>
   <body>
     <header class="header">
+      
       <div class="flex-box container">
         <a href="#" class="logo" aria-label="logo"
-          >Cocktails
-        
+          ><img class="logo-one" src="./image/Logo.png" alt="icon">
+          <img class="logo-two" src="./image/logo-icon.png.png" alt="icon">
         </a>
         <nav class="navi js-menu-container">
           <ul class="navi__list">
+
             <li class="navi__item">
-              <a class="navi__link" href="./index.html">Home</a>
+              <a class="navi__link" href=".#">Home</a>
             </li>
+
             <li class="navi__item">
               <div href="#" class="tip">
                 <div class="hover-box">
@@ -40,12 +43,6 @@
         </nav>
 
         <form class="search-form" id="search-form">
-          <input class="search-input"
-            type="text"
-            name="searchQuery"
-            autocomplete="off"
-            placeholder="Search cocktails..."
-          />
           <button class="btn" type="submit">
             <svg class="icon__search" width="23" height="23">
               <use href="./image/symbol-defs.svg#lup"
@@ -54,6 +51,13 @@
               ></use>
             </svg>
           </button>
+          <input class="search-input"
+            type="text"
+            name="searchQuery"
+            autocomplete="off"
+            placeholder="Search cocktails..."
+          />
+          
         </form>
 
         <div class="btn-box">
@@ -70,35 +74,34 @@
           </button>
         </div>
 
-         <!-- Разметка переключателя темы -->
-        <div class="theme-switch">
-          <!-- <svg class="theme-switch__icon" role="img" aria-label="Иконка солнца">
-            <use href="./images/sprite.svg#sun"></use>
-          </svg> -->
+        <!-- Разметка переключателя темы -->
+  <div class="theme-switch">
+    <!-- <svg class="theme-switch__icon" role="img" aria-label="Иконка солнца">
+      <use href="./images/sprite.svg#sun"></use>
+    </svg> -->
 
-          <div class="theme-switch__control">
-            <input
-              class="theme-switch__toggle"
-              type="checkbox"
-              name="theme"
-              id="theme-switch-toggle"
-              aria-label="Переключить между тёмной и светлой темой"
-            />
-            <label
-              aria-hidden="true"
-              class="theme-switch__track"
-              for="theme-switch-toggle"
-            >
-            </label>
-            <div aria-hidden="true" class="theme-switch__marker"></div>
-          </div>
+    <div class="theme-switch__control">
+      <input
+        class="theme-switch__toggle"
+        type="checkbox"
+        name="theme"
+        id="theme-switch-toggle"
+        aria-label="Переключить между тёмной и светлой темой"
+      />
+      <label
+        aria-hidden="true"
+        class="theme-switch__track"
+        for="theme-switch-toggle"
+      >
+      </label>
+      <div aria-hidden="true" class="theme-switch__marker"></div>
+    </div>
 
-          <!-- <svg class="theme-switch__icon" aria-label="Иконка луны">
-            <use href="./images/sprite.svg#moon"></use>
-          </svg> -->
-        </div>
-      </div>   
-
+    <!-- <svg class="theme-switch__icon" aria-label="Иконка луны">
+      <use href="./images/sprite.svg#moon"></use>
+    </svg> -->
+  </div>
+</div>
     </header>
 
     <main>
@@ -107,9 +110,7 @@
           <h2 class="cocktails__title">Favorite cocktails</h2>
           <ul class="cocktails__list">
             <li class="cocktails__card">
-              <div>
-                <!-- <img src="" alt=""> -->
-              </div>
+              <img class="cocktails__image" src="./image/pina.png" alt="cocktail">
               <p class="cocktails__name">Negroni</p>
               <div class="button-wrapper">
                 <button class="btn-lm" type="button">Learn more</button>
@@ -125,9 +126,7 @@
             </li>
 
             <li class="cocktails__card">
-              <div>
-                <!-- <img src="" alt=""> -->
-              </div>
+              <img class="cocktails__image" src="./image/pina.png" alt="cocktail">
               <p class="cocktails__name">Negroni</p>
               <div class="button-wrapper">
                 <button class="btn-lm" type="button">Learn more</button>
@@ -143,9 +142,7 @@
             </li>
 
             <li class="cocktails__card">
-              <div>
-                <!-- <img src="" alt=""> -->
-              </div>
+              <img class="cocktails__image" src="./image/pina.png" alt="cocktail">
               <p class="cocktails__name">Negroni</p>
               <div class="button-wrapper">
                 <button class="btn-lm" type="button">Learn more</button>
