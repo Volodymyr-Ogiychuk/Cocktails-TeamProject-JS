@@ -180,7 +180,7 @@ linkFavDrinkRef.addEventListener('click', e => {
     .then(async drinkIdArr => {
       let arrayToRender = [];
 
-      const arrayOfPromises = drinkIdArr.map(async drinkId => {
+      const arrayOfPromises = drinkIdArr[0].map(async drinkId => {
         return await getCocktailById(drinkId);
       });
 
@@ -189,7 +189,7 @@ linkFavDrinkRef.addEventListener('click', e => {
       drinks.map(({ drinks }) => {
         arrayToRender.push(drinks[0]);
       });
-
+      console.log(arrayToRender);
       document.querySelector('.hero').style.display = 'none';
       cocktailsTitleRef.innerHTML = 'Favorite cocktails';
       cocktailsListRef.innerHTML = renderDrinkMarkup(arrayToRender);
