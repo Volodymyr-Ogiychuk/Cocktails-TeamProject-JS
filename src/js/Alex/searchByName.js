@@ -17,7 +17,7 @@ function onSearchSubmit(e) {
   getCocktailByName(userInput)
     .then(({ drinks }) => {
       if (!userInput) throw new Error();
-
+      console.log(drinks);
       cocktailsListRef.innerHTML = renderDrinkMarkup(drinks);
     })
     .catch(error => {

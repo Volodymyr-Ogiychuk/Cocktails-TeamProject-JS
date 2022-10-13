@@ -23,6 +23,11 @@
   <body>
     <header class="header">
       <div class="flex-box container">
+        <a href="#" class="logo" aria-label="logo"
+          >Cocktails
+          <svg class="logo__icon" width="40" height="40">
+            <use href="./image/cocktail 1.svg#cocktaile" aria-label="img"></use>
+          </svg>
         <a href="./index.html" class="logo" aria-label="logo"
           ><img class="logo-one" src="./image/Logo.png" alt="icon" />
           <img class="logo-two" src="./image/logo-icon.png.png" alt="icon" />
@@ -62,6 +67,14 @@
           </ul>
         </nav>
 
+        <form class="search-form" id="search-form">
+          <input
+            class="search-input"
+            type="text"
+            name="searchQuery"
+            autocomplete="off"
+            placeholder="Search cocktails..."
+          />
         <form class="search-form js-menu-container" id="search-form">
           <button class="btn" type="submit">
             <svg class="icon__search" width="23" height="23">
@@ -84,6 +97,42 @@
         <button
           class="auth-btn"
           type="button"
+          style="
+            width: 33px;
+            height: 33px;
+            background-repeat: no-repeat;
+            background-size: cover;
+            border: none;
+            cursor: pointer;
+            margin-bottom: 10px;
+            margin-top: 10px;
+            background-color: aqua;
+          "
+        >
+          <svg class="auth-btn-icon" width="33" height="33">
+            <use href="./image/auth-btn-icon.svg"></use>
+          </svg>
+        </button>
+
+        <form id="registration-form">
+          <input
+            type="text"
+            placeholder="Email"
+            name="email"
+            id="email"
+            required
+          />
+          <input
+            type="text"
+            placeholder="Password"
+            name="password"
+            id="password"
+            required
+          />
+          <button class="registration-btn" type="submit">Registration</button>
+          <button class="signin-btn" type="submit">Log In</button>
+          <button class="logout-btn" type="button">Log Out</button>
+        </form>
           aria-label="authorization button"
         ></button>
 
@@ -107,6 +156,9 @@
 
         <!-- Разметка переключателя темы -->
         <div class="theme-switch">
+          <!-- <svg class="theme-switch__icon" role="img" aria-label="Иконка солнца">
+      <use href="./images/sprite.svg#sun"></use>
+    </svg> -->
           <h3 class="theme__title-light">Light</h3>
 
           <div class="theme-switch__control">
@@ -126,6 +178,9 @@
             <div aria-hidden="true" class="theme-switch__marker"></div>
           </div>
 
+          <!-- <svg class="theme-switch__icon" aria-label="Иконка луны">
+      <use href="./images/sprite.svg#moon"></use>
+    </svg> -->
           <h3 class="theme__title-dark">Dark</h3>
         </div>
       </div>
@@ -176,6 +231,18 @@
               alt="cocktail"
             />
           </picture>
+          <!-- <img class="hero-img" src="./image/coctail-mobile.png" alt="cocktail"> -->
+          <p class="hero__text">Search your favorite cocktail by ABC</p>
+
+          <div class="app">
+            <div class="wrap">
+              <div id="select"></div>
+            </div>
+          </div>
+
+          <ul class="letter-list">
+            <li class="letter"></li>
+          </ul>
         </div>
       </section>
 
@@ -385,6 +452,7 @@
         </button>
       </div>
     </div>
+
 
     <!-- Разметка модалки авторизации -->
     <div class="back-drop-reg is-hidden">
