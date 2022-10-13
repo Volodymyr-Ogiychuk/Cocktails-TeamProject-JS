@@ -9,7 +9,7 @@ body {
     letter-spacing: 0.04em;
 }
 
-.is-hidden {
+.visually-hidden {
     position: absolute;
     white-space: nowrap;
     width: 1px;
@@ -20,6 +20,10 @@ body {
     clip: rect(0 0 0 0);
     clip-path: inset(50%);
     margin: -1px;
+}
+
+.is-hidden{
+    display: none;
 }
 
 .container {
@@ -47,6 +51,9 @@ body {
     padding-bottom: 60px;
 }
 
+
+// BACKDROP FOR MODAL
+
 .backdrop {
     position: fixed;
     top: 0;
@@ -61,7 +68,7 @@ body {
     overflow-y: scroll;
 }
 
-.backdrop.backdrop--is-hidden {
+.backdrop.is-hidden {
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
