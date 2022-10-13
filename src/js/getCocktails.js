@@ -53,3 +53,12 @@ export function getIngrImg(inrgName) {
     return response.url;
   });
 }
+
+export function getIngrById(ingrId) {
+  return fetch(
+    `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?iid=${ingrId}`
+  ).then(response => {
+    if (!response.ok) throw new Error(response.status);
+    return response.json();
+  });
+}

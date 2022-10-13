@@ -14,3 +14,18 @@ export function renderDrinkMarkup(drinksArr) {
     })
     .join('');
 }
+
+export function renderIngredientsMarkup(ingredientsArr) {
+  return ingredientsArr
+    .map(({ idIngredient, strType, strIngredient }) => {
+      return `<li class="ingredients__card">
+              <h3 class="ingredients__title">${strIngredient}</h3>
+              <p class="ingredients__text">${strType}</p>
+              <div class="button-wrapper" data-ingr="${idIngredient}">
+                <button class="btn-lm" type="button">Learn more</button>
+                <button class="btn-add-fav" type="button">Add to favorite</button>
+              </div>
+            </li>`;
+    })
+    .join('');
+}

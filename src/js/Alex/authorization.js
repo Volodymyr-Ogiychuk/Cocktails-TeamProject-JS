@@ -6,9 +6,9 @@ import {
   onAuthStateChanged,
   signOut,
 } from 'firebase/auth';
-import { addToFavorite, synchronizeFafDrinks, getFavDrink } from './DB';
-import { getCocktailById } from '../getCocktails';
-import { renderDrinkMarkup } from '../markupTools';
+import { addToFavorite, getFavIngr, getFavDrink } from './DB';
+import { getCocktailById, getIngrById } from '../getCocktails';
+import { renderDrinkMarkup, renderIngredientsMarkup } from '../markupTools';
 import {
   getDatabase,
   ref,
@@ -51,7 +51,7 @@ const cocktailsListRef = document.querySelector('.cocktails__list');
 const searchFailRef = document.querySelector('.not-found');
 const cocktailsTitleRef = document.querySelector('.cocktails__title');
 
-// Buttons logic
+// Registry buttons logic
 regBtnRef.addEventListener('click', onRegClick);
 signinBthRef.addEventListener('click', onSignInClick);
 logoutBtnRef.addEventListener('click', onLogOutClick);
@@ -147,11 +147,15 @@ function onSignIn() {
 
 //Add, remove, render favorites
 const cocktailsRef = document.querySelector('.cocktails.section');
-const linkFavRef = document.querySelector('.link-elem');
+const linkFavDrinkRef = document.querySelector('.js-fav-cocktail');
+const linkFavIngrRef = document.querySelector('.js-fav-ingr');
+const modalIngrRef = document.querySelector('.modal__ingredients');
 
-cocktailsRef.addEventListener('click', onAddClick);
+cocktailsRef.addEventListener('click', onAddDrinkClick);
+modalIngrRef.addEventListener('click', onAddIngrClick);
+cocktailsListRef.addEventListener('click', onAddIngrClick);
 
-function onAddClick(e) {
+function onAddDrinkClick(e) {
   if (e.target.classList.contains('btn-add') && uid) {
     // const drinkID = event.target.parentNode.previousElementSibling.dataset.id;
     // addToFavorite(drinkID, uid);
@@ -161,7 +165,15 @@ function onAddClick(e) {
   }
 }
 
-linkFavRef.addEventListener('click', e => {
+function onAddIngrClick(e) {
+  if (e.target.classList.contains('btn-add-fav') && uid) {
+    synchronizeFavIngr(uid);
+  }
+}
+
+// On page change
+
+linkFavDrinkRef.addEventListener('click', e => {
   e.preventDefault();
 
   getFavDrink(uid)
@@ -179,10 +191,43 @@ linkFavRef.addEventListener('click', e => {
       });
 
       document.querySelector('.hero').style.display = 'none';
-      document.querySelector('.cocktails__title').innerHTML =
-        'Favorite cocktails';
+      cocktailsTitleRef.innerHTML = 'Favorite cocktails';
       cocktailsListRef.innerHTML = renderDrinkMarkup(arrayToRender);
       const allAddBtn = document.querySelectorAll('.btn-add');
+
+      allAddBtn.forEach(addbtn => {
+        addbtn.textContent = 'Remove';
+      });
+    })
+    .catch(res => {
+      console.log(res);
+      cocktailsListRef.innerHTML = '';
+      searchFailRef.classList.remove('is-hidden');
+      cocktailsTitleRef.classList.add('is-hidden');
+    });
+});
+
+linkFavIngrRef.addEventListener('click', e => {
+  e.preventDefault();
+
+  getFavIngr(uid)
+    .then(async ingrIdArr => {
+      let arrayToRender = [];
+
+      const arrayOfPromises = ingrIdArr[0].map(async ingrId => {
+        return await getIngrById(ingrId);
+      });
+
+      const ingridients = await Promise.all(arrayOfPromises);
+
+      ingridients.map(({ ingredients }) => {
+        arrayToRender.push(ingredients[0]);
+      });
+
+      document.querySelector('.hero').style.display = 'none';
+      cocktailsTitleRef.innerHTML = 'Favorite ingredients';
+      cocktailsListRef.innerHTML = renderIngredientsMarkup(arrayToRender);
+      const allAddBtn = document.querySelectorAll('.btn-add-fav');
 
       allAddBtn.forEach(addbtn => {
         addbtn.textContent = 'Remove';
@@ -220,3 +265,9 @@ function synchronizeFavDrinks(uid) {
 //     console.log(snapshot.val());
 //   });
 // }
+
+function synchronizeFavIngr(uid) {
+  set(ref(database, 'favoriteIngr/' + uid), {
+    savedIngr: load('ingridients'),
+  });
+}

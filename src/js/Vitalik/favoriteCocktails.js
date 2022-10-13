@@ -5,17 +5,17 @@ const btnAdd = document.querySelector('.cocktails.section');
 btnAdd.addEventListener('click', getFavoritesCoctails);
 
 function getFavoritesCoctails(event) {
-  if (event.target.textContent === 'Remove') {
-    const idCoctails =
-      event.target.parentNode.previousElementSibling.dataset.id;
-    event.target.textContent = 'Add to';
-
-    removeId(idCoctails);
-    save(COCKTAILS_STORAGE_KEY, nameCocktails);
-    console.log(nameCocktails);
-    return;
-  }
   if (event.target.classList.contains('btn-add')) {
+    if (event.target.textContent === 'Remove') {
+      const idCoctails =
+        event.target.parentNode.previousElementSibling.dataset.id;
+      event.target.textContent = 'Add to';
+
+      removeId(idCoctails);
+      save(COCKTAILS_STORAGE_KEY, nameCocktails);
+      console.log(nameCocktails);
+      return;
+    }
     const idCoctails =
       event.target.parentNode.previousElementSibling.dataset.id;
     nameCocktails.push(idCoctails);
