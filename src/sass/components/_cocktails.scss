@@ -12,6 +12,20 @@
   text-align: center;
   color: inherit;
   margin-bottom: 60px;
+
+  @media screen and (min-width: $tablet) {
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 133%;
+    
+    text-align: center;
+  }
+
+  @media screen and (min-width: $desktop) {
+    font-size: 48px;
+    line-height: 150%;
+  }
+
 }
 
 
@@ -48,7 +62,9 @@
   font-size: 26px;
   line-height: 162%;
   text-align: center;
-  color: inherit
+  color: inherit;
+  margin-top:  20px;
+  margin-bottom: 27px;
 }
 
 
@@ -133,7 +149,7 @@
     transform: translate(-50%, -150%);
     width: 21px;
     height: 19px;
-    background-image: url(../image/Heart.jpg);
+    background-image: url(../image/Heart.png);
     background-repeat: no-repeat;
   }
 
@@ -146,7 +162,7 @@
     transform: translate(-50%, -150%);
     width: 21px;
     height: 19px;
-    background-image: url(../image/Heart2.jpg);
+    background-image: url(../image/Heart2.png);
     background-repeat: no-repeat;
   }
 }
@@ -156,19 +172,41 @@
 
 // Section NOT-Found
 
-// .not-found{
-//   display: none;
-// }
+.not-found.is-hiden{
+  display: none;
+}
 
 .not-found__title{
   font-weight: 600;
   font-size: 22px;
   line-height: 191%;
   margin-bottom: 63px;
+  width: 280px;
+  height: 84px;
+  margin-left: auto;
+  margin-right: auto;
 
   text-align: center;
 
-  color: indianred;
+  color: inherit;
+
+  @media screen and (min-width: $tablet) {
+    width: 335px;
+
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 131%;
+  }
+
+  @media screen and (min-width: $desktop) {
+    width: 497px;
+    height: 144px;
+
+    font-weight: 700;
+    font-size: 48px;
+    line-height: 150%;
+  }
+
 }
 
 .img-bag{
@@ -176,4 +214,10 @@
   height: 308px;
   margin-left: auto;
   margin-right: auto;
+
+  @media screen and (min-width: $tablet) {
+    width: 345px;
+    height: 380px;
+  }
+
 }

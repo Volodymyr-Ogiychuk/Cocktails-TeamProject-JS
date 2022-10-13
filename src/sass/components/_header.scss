@@ -163,6 +163,13 @@
 .search-input{
     border: none;
     background-color: transparent;
+
+    width: 238px;
+    height: 40px;
+
+    @media screen and(min-width:$tablet){
+        width: 249px;
+    }
 }
 
 .btn{
