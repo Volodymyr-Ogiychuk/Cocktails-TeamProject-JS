@@ -22,15 +22,9 @@ let cocktId = '';
 let cardsPerPage = 9;
 let ingrMarkup = '';
 let ingrCardMarkup = '';
-let ingrBtnAddRemove = '';
 
 const str = 'abcdefghijklmnopqrstuvwxyz 1234567890';
 let arr = str.split("");
-
-// временная разметка
-
-// const addList = '<ul class="letter-list"></ul>';
-// formByLetter.insertAdjacentHTML('afterend', addList);4
 
 // контроль ширины экрана
 
@@ -136,30 +130,6 @@ const handleClick = (event => {
     event.target.classList.add("button-active")
     fetch();
 });
-
-// renderDrinkMarkup(drinksList);
-// cocktList.innerHTML = '';   
-// cocktList.insertAdjacentHTML('beforeend', cardMarkup);
-
-// function renderCardsList (drinksList) {
-//     const cardMarkup = drinksList.map(({ idDrink, strDrinkThumb, strDrink }) => {
-//         renderDrinkMarkup(drinksList);
-//         // console.log('cardMarkup', cardMarkup);
-//     // return `
-//     //     <li>
-//     //         <div>
-//     //           <img src="${strDrinkThumb}" alt="${strDrink}" width="280">
-//     //         </div>
-//     //         <p data-id="${idDrink}">${strDrink}</p>
-//     //         <button class="btn-lm" type="button">Learn more</button>
-//     //         ${ingrBtnAddRemove}
-//     //     </li>`;           
-//     // })
-//     //     .join('');
-// cocktList.innerHTML = '';   
-// cocktList.insertAdjacentHTML('beforeend', cardMarkup);
-// })
-// };
 
 function markupAlert() {
     cocktList.innerHTML = ''
@@ -296,14 +266,13 @@ function ingrModalOpen(event) {
     getIngrByName(ingrName).then(data => {
        
         const ingrData = data.ingredients;
-        ingrCardMarkup = ingrData.map(({ idIngredient, strDescription, strType, strAlcohol, strABV }) => {
+        ingrCardMarkup = ingrData.map(({ idIngredient, strDescription, strType, strABV }) => {
             
             console.log('ingrData', ingrData);
             let ingrType = 'Non-specific';
             let ingrDescr = 'No description';
             let ingrAlcBV = '';
             let ingrStartDescr = '';
-            let ingrBtnAddRemove = '';
 
             if (strDescription !== null) {
                 ingrStartDescr = strDescription.split(" ")[0];
