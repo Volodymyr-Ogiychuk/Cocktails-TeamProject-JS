@@ -1,4 +1,5 @@
 .modal__cocktails{
+    position: relative;
     padding: 16px 20px 40px 20px;
 }
 
@@ -8,19 +9,22 @@
     font-size: 32px;
     line-height: 38px;
     margin-bottom: 20px;
-    color: #202025;
+    color: inherit;
 }
+
 
 .cocktails__instractions{
     font-weight: 600;
     font-size: 16px;
     line-height: 162%;
+    margin-top: 28px;
     margin-bottom: 20px;
 
     text-transform: uppercase;
 
-    color: #202025;
+    color: inherit;
 }
+
 
 .instractions-text{
     font-weight: 400;
@@ -29,6 +33,10 @@
     margin-bottom: 32px;
 
     color: #5F6775;
+}
+
+.instractions-text.dark-theme{
+    color: #BDBDBD;
 }
 
 .cocktail-compound{
@@ -41,7 +49,7 @@
     line-height: 24px;
     margin-bottom: 8px;
 
-    color: #000917;
+    color: inherit
 }
 
 .compound__text{
@@ -50,7 +58,7 @@
     line-height: 21px;
     margin-bottom: 8px;
 
-    color: #202025;
+    color: inherit;
 }
 
 .compound__elem{
@@ -59,6 +67,10 @@
     line-height: 162%;
 
     color: #5F6775;
+}
+
+.compound__elem.dark-theme{
+    color: #FCFCFC;
 }
 
 .btn-add-fav{
@@ -130,7 +142,44 @@
 }
 
 .modal__icon{
+
+    position: absolute;
+    top: 4px;
+    right: 13px;
     background-color: rgba(0,0,0,0);
     border: none;
     cursor: pointer;
+}
+
+.modal__icon.dark-theme{
+    fill: #FCFCFC;
+}
+
+.star{
+    color: #000917;
+    margin-right: 5px;
+}
+
+.star.dark-theme{
+    color: #FCFCFC;
+}
+
+.cocktails__foto{
+    max-width: 288px;
+}
+
+.modal__path{
+    display: block;
+
+    @media screen and (min-width: $tablet) {
+       display: flex;
+       flex-direction: row-reverse;
+       justify-content: start;
+    }
+
+    
+}
+
+.path__box{
+    margin-left: 32px;
 }

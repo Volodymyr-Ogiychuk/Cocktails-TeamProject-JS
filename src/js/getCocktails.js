@@ -16,6 +16,17 @@ export function getCocktailByLetter(cocktailLetter) {
   });
 }
 
+export function getCocktailById(cocktId) {
+  return fetch(
+    `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${cocktId}`
+  ).then(response => {
+    if (!response.ok) throw new Error(response.status);
+    return response.json();
+  });
+}
+
+
+
 export function getIngrByName(ingrName) {
   return fetch(
     `https://www.thecocktaildb.com/api/json/v1/1/search.php?i=${ingrName}`
