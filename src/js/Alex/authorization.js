@@ -113,10 +113,12 @@ onAuthStateChanged(auth, user => {
     uid = user.uid;
     console.log('sign changed', uid);
     onSignIn();
+    authBtnRef.style.backgroundColor = '#f3f503';
   } else {
     // User is signed out
     console.log('signed out');
     onSignOut();
+    authBtnRef.style.backgroundColor = 'transparent';
     uid = '';
   }
 });
@@ -157,10 +159,6 @@ cocktailsListRef.addEventListener('click', onAddIngrClick);
 
 function onAddDrinkClick(e) {
   if (e.target.classList.contains('btn-add') && uid) {
-    // const drinkID = event.target.parentNode.previousElementSibling.dataset.id;
-    // addToFavorite(drinkID, uid);
-    //new
-
     synchronizeFavDrinks(uid);
   }
 }
@@ -179,6 +177,8 @@ linkFavDrinkRef.addEventListener('click', e => {
   getFavDrink(uid)
     .then(async drinkIdArr => {
       let arrayToRender = [];
+      searchFailRef.classList.add('is-hidden');
+      cocktailsTitleRef.classList.remove('is-hidden');
 
       const arrayOfPromises = drinkIdArr[0].map(async drinkId => {
         return await getCocktailById(drinkId);
@@ -209,6 +209,8 @@ linkFavDrinkRef.addEventListener('click', e => {
 
 linkFavIngrRef.addEventListener('click', e => {
   e.preventDefault();
+  searchFailRef.classList.add('is-hidden');
+  cocktailsTitleRef.classList.remove('is-hidden');
 
   getFavIngr(uid)
     .then(async ingrIdArr => {
