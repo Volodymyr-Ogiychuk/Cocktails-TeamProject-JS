@@ -11,20 +11,21 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="./sass/index.scss" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+      integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
     <script type="module" src="./index.js"></script>
   </head>
   <body>
     <header class="header">
       <div class="flex-box container">
         <a href="./index.html" class="logo" aria-label="logo"
-          ><img class="logo-one" src="./image/Logo.png" alt="icon">
-          <img class="logo-two" src="./image/logo-icon.png.png" alt="icon"> 
-        <a href="#" class="logo" aria-label="logo"
-          >Cocktails
-          <svg class="logo__icon" width="40" height="40">
-            <use href="./image/cocktail 1.svg#cocktaile" aria-label="img"></use>
-          </svg>
+          ><img class="logo-one" src="./image/Logo.png" alt="icon" />
+          <img class="logo-two" src="./image/logo-icon.png.png" alt="icon" />
         </a>
         <nav class="navi js-menu-container">
           <ul class="navi__list">
@@ -50,9 +51,10 @@
                 </div>
                 Favorite
                 <svg class="chevron" width="24" height="24">
-                  <use href="./image/symbol-defs.svg#icon-chevron"
-                      aria-label="img"
-                      role="button"
+                  <use
+                    href="./image/symbol-defs.svg#icon-chevron"
+                    aria-label="img"
+                    role="button"
                   ></use>
                 </svg>
               </div>
@@ -61,14 +63,6 @@
         </nav>
 
         <form class="search-form js-menu-container" id="search-form">
-        <form class="search-form" id="search-form">
-          <input
-            class="search-input"
-            type="text"
-            name="searchQuery"
-            autocomplete="off"
-            placeholder="Search cocktails..."
-          />
           <button class="btn" type="submit">
             <svg class="icon__search" width="23" height="23">
               <use
@@ -78,17 +72,27 @@
               ></use>
             </svg>
           </button>
-          <input class="search-input"
+          <input
+            class="search-input"
             type="text"
             name="searchQuery"
             autocomplete="off"
             placeholder="Search cocktails..."
           />
-          
         </form>
 
+        <button
+          class="auth-btn"
+          type="button"
+          aria-label="authorization button"
+        ></button>
+
         <div class="btn-box">
-          <button class="menu-btn js-open-menu" type="button" aria-expanded="false">
+          <button
+            class="menu-btn js-open-menu"
+            type="button"
+            aria-expanded="false"
+          >
             <svg class="menu-btn__icon" width="30" height="16">
               <use href="./image/symbol-defs.svg#icon-menu"></use>
             </svg>
@@ -96,18 +100,14 @@
 
           <button class="menu-btn js-close-menu is-hiden-btn" type="button">
             <svg class="menu-btn__icon" width="30" height="30">
-                <use href="./image/symbol-defs.svg#icon-close-line"></use>
+              <use href="./image/symbol-defs.svg#icon-close-line"></use>
             </svg>
           </button>
         </div>
 
         <!-- Разметка переключателя темы -->
-  <div class="theme-switch">
-    <h3 class="theme__title-light">Light</h3>
         <div class="theme-switch">
-          <!-- <svg class="theme-switch__icon" role="img" aria-label="Иконка солнца">
-      <use href="./images/sprite.svg#sun"></use>
-    </svg> -->
+          <h3 class="theme__title-light">Light</h3>
 
           <div class="theme-switch__control">
             <input
@@ -126,19 +126,13 @@
             <div aria-hidden="true" class="theme-switch__marker"></div>
           </div>
 
-    <h3 class="theme__title-dark">Dark</h3>
-  </div>
-</div>
-          <!-- <svg class="theme-switch__icon" aria-label="Иконка луны">
-      <use href="./images/sprite.svg#moon"></use>
-    </svg> -->
+          <h3 class="theme__title-dark">Dark</h3>
         </div>
       </div>
     </header>
 
     <main>
       <section class="hero section">
-
         <div class="container hero-flex">
           <div class="hero__box">
             <h1 class="hero__title">
@@ -148,24 +142,15 @@
 
             <div class="app">
               <div class="wrap">
-                <div id="select">
-            
-                </div>
+                <div id="select"></div>
               </div>
-  
             </div>
 
-  
             <ul class="letter-list">
-              <li class="letter">
-  
-              </li>
-  
+              <li class="letter"></li>
             </ul>
-
-
           </div>
-         
+
           <picture>
             <source
               srcset="
@@ -191,13 +176,6 @@
               alt="cocktail"
             />
           </picture>
-          <!-- <img class="hero-img" src="./image/coctail-mobile.png" alt="cocktail"> -->
-          <p class="hero__text">Search your favorite cocktail by ABC</p>
-          <div class="app">
-            <div class="wrap">
-              <div id="select">
-          
-  
         </div>
       </section>
 
@@ -206,7 +184,11 @@
           <h2 class="cocktails__title">Cocktails</h2>
           <ul class="cocktails__list">
             <li class="cocktails__card">
-              <img class="cocktails__image" src="./image/pina.png" alt="cocktail">
+              <img
+                class="cocktails__image"
+                src="./image/pina.png"
+                alt="cocktail"
+              />
               <p class="cocktails__name">Negroni</p>
               <div class="button-wrapper">
                 <button class="btn-lm" type="button">Learn more</button>
@@ -224,7 +206,11 @@
             </li>
 
             <li class="cocktails__card">
-                <img class="cocktails__image" src="./image/pina.png" alt="cocktail">
+              <img
+                class="cocktails__image"
+                src="./image/pina.png"
+                alt="cocktail"
+              />
               <p class="cocktails__name">Negroni</p>
               <div class="button-wrapper">
                 <button class="btn-lm" type="button">Learn more</button>
@@ -242,7 +228,11 @@
             </li>
 
             <li class="cocktails__card">
-              <img class="cocktails__image" src="./image/pina.png" alt="cocktail">
+              <img
+                class="cocktails__image"
+                src="./image/pina.png"
+                alt="cocktail"
+              />
               <p class="cocktails__name">Negroni</p>
               <div class="button-wrapper">
                 <button class="btn-lm" type="button">Learn more</button>
@@ -289,17 +279,36 @@
             <ul class="cocktail-compound">
               <h3 class="compound__title">Ingredients</h3>
               <p class="compound__text">Per cocktail</p>
-              <li><a class="compound__elem" href=""><span class="star">✶</span>Ice</a></li>
-              <li><a class="compound__elem" href=""><span class="star">✶</span>1 ounce gin</a></li>
-              <li><a class="compound__elem" href=""><span class="star">✶</span>1 ounce Campari</a></li>
-              <li><a class="compound__elem" href=""><span class="star">✶</span>1 ounce sweet vermouth</a></li>
-              <li><a class="compound__elem" href=""><span class="star">✶</span>Garnish: orange peel</a></li>
+              <li>
+                <a class="compound__elem" href=""
+                  ><span class="star">✶</span>Ice</a
+                >
+              </li>
+              <li>
+                <a class="compound__elem" href=""
+                  ><span class="star">✶</span>1 ounce gin</a
+                >
+              </li>
+              <li>
+                <a class="compound__elem" href=""
+                  ><span class="star">✶</span>1 ounce Campari</a
+                >
+              </li>
+              <li>
+                <a class="compound__elem" href=""
+                  ><span class="star">✶</span>1 ounce sweet vermouth</a
+                >
+              </li>
+              <li>
+                <a class="compound__elem" href=""
+                  ><span class="star">✶</span>Garnish: orange peel</a
+                >
+              </li>
             </ul>
           </div>
-          <img class="cocktails__foto" src="./image/pina.png" alt="cocktail">
-        
+          <img class="cocktails__foto" src="./image/pina.png" alt="cocktail" />
         </div>
-        
+
         <h2 class="cocktails__instractions">Instractions:</h2>
         <p class="instractions-text">
           Add the gin, Campari and sweet vermouth to a mixing glass filled with
@@ -307,7 +316,6 @@
           with large ice cubes. Garnish with an orange peel.
         </p>
         <!-- <img src="" alt=""> -->
-        
 
         <div class="button-wrapper">
           <button class="btn-add-fav" type="button">Add to favorite</button>
@@ -332,11 +340,10 @@
       <div class="modal__ingredients">
         <div class="modal__title">
           <h2 class="modal__heading">Campari</h2>
-    
-          <h3 class="ingredient__title">Liqueur</h3>
 
+          <h3 class="ingredient__title">Liqueur</h3>
         </div>
-        
+
         <p class="ingredient__text">
           <span class="ingredien__text--bald">Campari</span> is an Italian
           alcoholic liqueur, considered an apéritif (20.5%, 21%, 24%, 25%, or
@@ -347,10 +354,18 @@
         </p>
 
         <ul class="ingredient__compound">
-          <li class="compound__elem"><span class="star">✶</span>Type: Bitters</li>
-          <li class="compound__elem"><span class="star">✶</span>Country of origin: Italy</li>
-          <li class="compound__elem"><span class="star">✶</span>Alcohol by volume: 20.5–28.5%</li>
-          <li class="compound__elem"><span class="star">✶</span>Flavour: Bitter, spicy and sweet</li>
+          <li class="compound__elem">
+            <span class="star">✶</span>Type: Bitters
+          </li>
+          <li class="compound__elem">
+            <span class="star">✶</span>Country of origin: Italy
+          </li>
+          <li class="compound__elem">
+            <span class="star">✶</span>Alcohol by volume: 20.5–28.5%
+          </li>
+          <li class="compound__elem">
+            <span class="star">✶</span>Flavour: Bitter, spicy and sweet
+          </li>
         </ul>
 
         <div class="button-wrapper">
