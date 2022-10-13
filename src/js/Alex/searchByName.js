@@ -1,5 +1,6 @@
 import { getCocktailByName } from '../getCocktails';
 import { renderDrinkMarkup } from '../markupTools';
+import { save, load } from '../Vitalik/storage';
 
 const searchFormRef = document.querySelector('#search-form');
 const cocktailsListRef = document.querySelector('.cocktails__list');
@@ -17,8 +18,19 @@ function onSearchSubmit(e) {
   getCocktailByName(userInput)
     .then(({ drinks }) => {
       if (!userInput) throw new Error();
-      console.log(drinks);
+
       cocktailsListRef.innerHTML = renderDrinkMarkup(drinks);
+      console.log(document.querySelectorAll('.btn-add'));
+      //   .addEventListener('DOMContentLoaded', onCardLoad);
+      document.querySelectorAll('.btn-add').forEach(button => {
+        const drinkId = button.parentNode.previousElementSibling.dataset.id;
+        console.log(button.parentNode.previousElementSibling.dataset.id);
+
+        if (load('cocktails').includes(drinkId)) {
+          console.log('true');
+          button.textContent = 'Remove';
+        }
+      });
     })
     .catch(error => {
       console.log(error);
@@ -27,4 +39,8 @@ function onSearchSubmit(e) {
       searchFailRef.classList.remove('is-hidden');
       cocktailsTitleRef.classList.add('is-hidden');
     });
+}
+
+function onCardLoad(e) {
+  console.log('working');
 }
