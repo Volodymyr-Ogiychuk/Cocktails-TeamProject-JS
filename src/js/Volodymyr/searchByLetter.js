@@ -213,7 +213,7 @@ function toggleModal(event) {
                     }
                 }
     
-                for (i = 0; i <= Object.keys(ingrObj).length - 1; i += 1) {
+                for (let i = 0; i <= Object.keys(ingrObj).length - 1; i += 1) {
                     ingrMarkup += `<li><a href="" data-ingredient="${Object.values(ingrObj)[i]}">${Object.values(dozsObj)[i]} ${Object.values(ingrObj)[i]}</a></li>
                     `}
 
