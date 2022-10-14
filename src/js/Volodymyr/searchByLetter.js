@@ -231,8 +231,7 @@ function renderModalCockt(drinksList) {
         renderBtn =
           '<button class="btn-re-fav" type="button">Remove from favorite</button>';
       } else {
-        renderBtn =
-          '<button class="btn-add-fav" type="button">Add to favorite</button>';
+        renderBtn = '<button class="btn-add" type="button">Add to</button>';
       }
 
       return `
@@ -263,11 +262,7 @@ function renderModalCockt(drinksList) {
           class="modal__button"
           data-modal-close
           aria-label="close"
-        >
-          <svg class="modal__icon" width="25" height="25">
-            <use href="./image/symbol-defs.svg#icon-close-line"></use>
-          </svg>
-        </button>
+        >X</button>
         `;
     })
     .join('');
@@ -315,7 +310,7 @@ function ingrModalOpen(event) {
             '<button class="btn-re-fav" type="button">Remove from favorite</button>';
         } else {
           renderBtn =
-            '<button class="btn-add-fav" type="button">Add to favorite</button>';
+            '<button class="btn-add-fav" type="button">Add to</button>';
         }
 
         return `
@@ -341,11 +336,7 @@ function ingrModalOpen(event) {
           class="modal__button2"
           data-modal-close
           aria-label="close"
-        >
-          <svg class="modal__icon" width="25" height="25">
-            <use href="./image/symbol-defs.svg#icon-close-line"></use>
-          </svg>
-        </button>
+        >X</button>
             `;
       })
       .join('');
@@ -366,6 +357,14 @@ function ingrModalOpen(event) {
           closeAuthModal();
         }
       });
+
+    document
+      .querySelector('.modal__button2')
+      .addEventListener('click', closeAuthModal);
+
+    document
+      .querySelector('.modal__button')
+      .addEventListener('click', closeAuthModal);
 
     function closeAuthModal() {
       document

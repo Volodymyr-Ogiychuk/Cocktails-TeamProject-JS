@@ -1,6 +1,7 @@
 .modal__ingredients{
     position: relative;
     padding: 16px 20px 40px 20px;
+    background-color: #fff;
 }
 
 .modal__title{
@@ -10,6 +11,19 @@
     }
     
 }
+
+.modal__button2, 
+.modal__button {
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #cecece;
+    border: none;
+}
+
+
 
 .ingredient__title{
     font-weight: 600;

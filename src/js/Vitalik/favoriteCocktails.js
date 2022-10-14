@@ -3,6 +3,9 @@ export let nameCocktails = [];
 const COCKTAILS_STORAGE_KEY = 'cocktails';
 const btnAdd = document.querySelector('.cocktails.section');
 btnAdd.addEventListener('click', getFavoritesCoctails);
+document
+  .querySelector('.modal__cocktails')
+  .addEventListener('click', getFavoritesCoctails);
 
 function getFavoritesCoctails(event) {
   if (event.target.classList.contains('btn-add')) {

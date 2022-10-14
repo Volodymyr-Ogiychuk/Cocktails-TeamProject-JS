@@ -172,6 +172,9 @@ const modalIngrRef = document.querySelector('.modal__ingredients');
 cocktailsRef.addEventListener('click', onAddDrinkClick);
 modalIngrRef.addEventListener('click', onAddIngrClick);
 cocktailsListRef.addEventListener('click', onAddIngrClick);
+document
+  .querySelector('.modal__cocktails')
+  .addEventListener('click', onAddIngrClick);
 
 function onAddDrinkClick(e) {
   if (e.target.classList.contains('btn-add') && uid) {
@@ -180,7 +183,9 @@ function onAddDrinkClick(e) {
 }
 
 function onAddIngrClick(e) {
+  console.log('add list');
   if (e.target.classList.contains('btn-add-fav') && uid) {
+    console.log('sync');
     synchronizeFavIngr(uid);
   }
 }
