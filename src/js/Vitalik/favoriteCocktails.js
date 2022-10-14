@@ -1,5 +1,5 @@
 import { save, load } from './storage';
-let nameCocktails = [];
+export let nameCocktails = [];
 const COCKTAILS_STORAGE_KEY = 'cocktails';
 const btnAdd = document.querySelector('.cocktails.section');
 btnAdd.addEventListener('click', getFavoritesCoctails);

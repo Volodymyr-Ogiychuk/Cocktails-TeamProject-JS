@@ -8,8 +8,6 @@ import { nameCocktails } from '../Vitalik/favoriteCocktails';
 import { arrIdIngridients } from '../Vitalik/favoriteIngridients';
 import { load } from '../Vitalik/storage';
 
-// const InfiniteScroll = require('infinite-scroll');
-
 const formByLetter = document.querySelector('.letter-list-first');
 const cocktList = document.querySelector('.cocktails__list');
 const cocktModalRef = document.querySelector('.modal__cocktails');
@@ -26,6 +24,7 @@ let cocktId = '';
 let cardsPerPage = 9;
 let ingrMarkup = '';
 let ingrCardMarkup = '';
+let cocktListLength = 0;
 
 
 const str = 'abcdefghijklmnopqrstuvwxyz 1234567890';
@@ -47,14 +46,13 @@ function widthControl() {
 
     
     window.addEventListener('resize', () => {
-        
         if (window.innerWidth <= 768) {
             formByLetter.classList.add('is-hidden')
             cardsPerPageAfterResize = 3;
         } else if (window.innerWidth > 768 && window.innerWidth <= 1280) {
             formByLetter.classList.remove('is-hidden')
             cardsPerPageAfterResize = 6;
-    } else {
+        } else {
             cardsPerPageAfterResize = 9;
         };
         
@@ -65,8 +63,7 @@ function widthControl() {
             createRandomList();
         }
 });
-
-}
+};
 
 widthControl();
 
@@ -78,7 +75,6 @@ function createLetterList(arr) {
                 ${element}
                 </button>
             </li>`;
-
         })
             .join('');
     formByLetter.insertAdjacentHTML('beforeend', markup);
@@ -102,8 +98,7 @@ function createRandomList() {
                     cocktList.insertAdjacentHTML('beforeend', cardMarkup);
                 } 
             });     
-    }
-    
+        }
     const cardMarkup = renderDrinkMarkup(randomDrinks);
     cocktList.innerHTML = '';
     cocktList.insertAdjacentHTML('beforeend', cardMarkup);
@@ -114,6 +109,8 @@ createLetterList(arr);
 createRandomList();
 
 function fetch() {
+    let pages = 0;
+    let btnLoadMore = '';
     if (letter !== '') {
         return getCocktailByLetter(letter)
             .then(data => {
@@ -130,6 +127,7 @@ function fetch() {
                 }
         })
     }
+
     markupAlert();    
 };
 
@@ -148,44 +146,45 @@ const handleClick = (event => {
 });
 
 function markupAlert() {
-    // cocktList.innerHTML = ''
-    cocktSectRef.classList.add('visually-hidden')
-    notFoundRef.classList.remove('not-found');
-
-    // cocktList.innerHTML = ''
-    // cocktList.previousElementSibling.innerHTML = '';
     
-   
-    // cocktList.previousElementSibling.insertAdjacentHTML('beforeend', `
-        
-    //     <h2 class="not-found__title">Sorry, we didn't find any cocktail for you</h2>
-    //     <div class="container">
-    //         <div class="images">
-    //             <img src="./image/photo.png" alt="">
-    //         </div>
-    //     </div>
-    // `);
+    cocktSectRef.classList.add('visually-hidden')
+    notFoundRef.classList.remove('is-hidden');
+
 };
 
 letterListRef.addEventListener('click', handleClick);
 formByLetter.addEventListener('click', handleClick);
 
+
+
 // модалка
 
 function modalSelector() {
     const refs = {
-      openModalBtn: document.querySelector(".cocktails__list"),
-      closeModalBtn: document.querySelector("[data-modal-close]"),
-      };
+    openModalBtn: document.querySelector('.cocktails__list'),
+    };
+    refs.openModalBtn.addEventListener('click', toggleModal);
+    
+    document.querySelector('.back-drop').addEventListener('click', event => {
 
-    refs.openModalBtn.addEventListener("click", toggleModal);
-    refs.closeModalBtn.addEventListener("click", () => {
-        modal.classList.toggle("is-hidden");
+        if (event.target === event.currentTarget || event.target === document.querySelector('.modal__button') ) {
+            closeAuthModal();
+        } else if (event.target.parentNode.parentNode === document.querySelector('.cocktail-compound')) {
+            document.querySelector('.modal__ingredients').parentNode.classList.remove('is-hidden');
+            ingrModalOpen(event);
+        };
     });
+    function closeAuthModal() {
+      document.querySelector('.back-drop').classList.add('is-hidden');
+    } 
 };
+
+modalSelector();
+
 
 function toggleModal(event) {
     const modal = document.querySelector("[data-modal]");
+    
     if (event.target.textContent !== 'Learn more') {
         return
     }
@@ -218,33 +217,27 @@ function toggleModal(event) {
                 }
     
                 for (let i = 0; i <= Object.keys(ingrObj).length - 1; i += 1) {
-                    // console.log('Object.values(ingrObj)[i]', Object.values(ingrObj)[i]);
                     ingrMarkup += `<li><a class="compound__elem" href="" data-ingredient="${Object.values(ingrObj)[i]}">${Object.values(dozsObj)[i]} ${Object.values(ingrObj)[i]}</a></li>
                     `}
-
                 renderModalCockt(drinksList);
-
             } else {
                 markupAlert();
             }
         })
     modal.classList.toggle("is-hidden");
+    
 };
 
 function renderModalCockt(drinksList) {
-
-    
     let renderBtn = '';
-    const cocktMarkup = drinksList.map(({ idDrink, strInstructions, strDrinkThumb, strDrink }) => {
-        //  || nameCocktails.includes(idDrink)
-        if (arrCocktls.includes(idDrink)) {
+    const cocktMarkup = drinksList.map(({ idDrink, strInstructions, strDrinkThumb, strDrink }) => {    
+        if (arrCocktls.includes(idDrink) || nameCocktails.includes(idDrink)) {
             renderBtn = '<button class="btn-re-fav" type="button">Remove from favorite</button>';
         } else {
             renderBtn = '<button class="btn-add-fav" type="button">Add to favorite</button>';
             } 
 
         return `
-
         <div class="modal__path">
           <div class="path__box">
             <h2 class="modal__heading">${strDrink}</h3>
@@ -285,8 +278,7 @@ function renderModalCockt(drinksList) {
     cocktModalRef.insertAdjacentHTML('beforeend', cocktMarkup);
     ingrMarkup = '';
     const ingrRef = document.querySelector('.cocktail-compound');
-    ingrRef.addEventListener('click', ingrModalOpen);
-
+    ingrRef.addEventListener('click', ingrModalOpen);    
 }
 
 // Вторая модалка
@@ -316,8 +308,8 @@ function ingrModalOpen(event) {
             if (strABV !== null) {
                 ingrAlcBV = `<li class="compound__elem">Alcohol by volume: ${strABV}</li>`;
             }
-            //  || arrIdIngridients.includes(idIngredient)
-            if (arrIngreds.includes(idIngredient)) {
+            
+            if (arrIngreds.includes(idIngredient) || arrIdIngridients.includes(idIngredient)) {
                 renderBtn = '<button class="btn-re-fav" type="button">Remove from favorite</button>';
             } else {
                 renderBtn = '<button class="btn-add-fav" type="button">Add to favorite</button>';
@@ -328,13 +320,13 @@ function ingrModalOpen(event) {
             <h2 class="modal__heading">${ingrName}</h2>
             <h3 class="ingredient__title">${ingrType}</h3>
         </div>
-        <p>
+        <p class="ingredien__text">
           <span class="ingredien__text--bald">${ingrStartDescr}</span> ${ingrDescr}
         </p>
     
         <ul class="ingredient__compound">
-          <li class="compound__elem">Type: ${ingrType}</li>
-           ${ingrAlcBV}
+          <li class="compound__elem"><span class="star">✶</span>Type: ${ingrType}</li>
+           <span class="star">✶</span>${ingrAlcBV}
         </ul>
     
         <div class="button-wrapper" data-ingr="${idIngredient}">
@@ -343,7 +335,7 @@ function ingrModalOpen(event) {
     
         <button
           type="button"
-          class="modal__button"
+          class="modal__button2"
           data-modal-close
           aria-label="close"
         >
@@ -360,12 +352,16 @@ function ingrModalOpen(event) {
         ingrModalRef.insertAdjacentHTML('beforeend', ingrCardMarkup);
         ingrCardMarkup = '';
         cocktModalRef.addEventListener('click', ingrModalOpen);
+        document.querySelector('.modal__ingredients').parentNode.addEventListener('click', e => {
+            if (e.target === document.querySelector('.modal__ingredients').parentNode || event.target === document.querySelector('.modal__button')) {
+        closeAuthModal();
+        }
+        });
+
+        function closeAuthModal() {
+        document.querySelector('.modal__ingredients').parentNode.classList.add('is-hidden');
+        }
     });
-
 };
-
-modalSelector();
-
-
 
 
