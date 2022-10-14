@@ -228,8 +228,7 @@ function renderModalCockt(drinksList) {
   const cocktMarkup = drinksList
     .map(({ idDrink, strInstructions, strDrinkThumb, strDrink }) => {
       if (arrCocktls.includes(idDrink) || nameCocktails.includes(idDrink)) {
-        renderBtn =
-          '<button class="btn-re-fav" type="button">Remove from favorite</button>';
+        renderBtn = '<button class="btn-re-fav" type="button">Remove</button>';
       } else {
         renderBtn = '<button class="btn-add" type="button">Add to</button>';
       }
@@ -307,7 +306,7 @@ function ingrModalOpen(event) {
           arrIdIngridients.includes(idIngredient)
         ) {
           renderBtn =
-            '<button class="btn-re-fav" type="button">Remove from favorite</button>';
+            '<button class="btn-re-fav" type="button">Remove</button>';
         } else {
           renderBtn =
             '<button class="btn-add-fav" type="button">Add to</button>';
