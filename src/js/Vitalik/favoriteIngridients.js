@@ -1,5 +1,5 @@
 import { save, load } from './storage';
-let arrIdIngridients = [];
+export let arrIdIngridients = [];
 const INGRIDIENTS_STORAGE_KEY = 'ingridients';
 const btnAdd = document.querySelector('.modal__ingredients');
 document
