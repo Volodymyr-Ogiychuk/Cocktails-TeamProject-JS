@@ -116,14 +116,10 @@ function fetch() {
         notFoundRef.classList.add('is-hidden');
         cocktListLength = data.drinks.length;
         if (cocktListLength > cardsPerPage) {
-          console.log('btnLoadMore not hidden');
           btnLoadMoreRef.style.display = 'inline-flex';
-          btnLoadMoreRef.addEventListener('click', paginator2)
-            
+          btnLoadMoreRef.addEventListener('click', paginator2)    
         }
         drinksList = data.drinks;
-        console.log('drinksListOOO', drinksList);
-
         paginator(drinksList)
           
       } else {
@@ -135,56 +131,41 @@ function fetch() {
   markupAlert();
 }
 
-
 function paginator(drinksList) {
   let arr1 = [];
   let counter1 = 0;
   
   arr1 = drinksList.splice(0, cardsPerPage);
-  drinksList2 = drinksList;
-  console.log('arr1', arr1);
-  console.log('drinksList2 again', drinksList2);
-  
+  drinksList2 = drinksList;  
   const cardMarkup = renderDrinkMarkup(arr1);
   cocktList.innerHTML = '';
   cocktList.insertAdjacentHTML('beforeend', cardMarkup);
   counter1 += 1;
-
-  console.log('counter1', counter1);
-  console.log('drinksList before SECOND pagination', drinksList);
 }
 
 function paginator2(counter1, arr1) {
 
 if (counter1 !== 0) {
-  console.log('counter1 BEFORE', counter1);
-  console.log('STARTING secondary pagination');
-  console.log('drinksList before SECOND pagination', drinksList2);
   if (drinksList2.length < cardsPerPage) {
-          
           const cardMarkup = renderDrinkMarkup(drinksList);
           cocktList.insertAdjacentHTML('beforeend', cardMarkup);
           btnLoadMoreRef.style.display = 'none';
-          console.log('Marked Up last page, hid the button');
           counter1 += 1;
         } else {
-    
         arr1 = drinksList2.splice(0, cardsPerPage);
         const cardMarkup = renderDrinkMarkup(arr1);
-    cocktList.insertAdjacentHTML('beforeend', cardMarkup);
-    console.log('3rd variand done');
+        cocktList.insertAdjacentHTML('beforeend', cardMarkup);
         counter1 += 1;
-
   }
   }
   }
-
-
 
 function removeActive() {
   btnLetterRef.forEach(elem => {
-    elem.classList.remove('button-active');
-    console.log('removeActive');
+    if (elem.classList.contains('button-active')) {
+        elem.classList.remove('button-active');
+    }
+    
   });
 }
 
