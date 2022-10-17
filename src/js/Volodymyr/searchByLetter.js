@@ -17,6 +17,7 @@ const cocktSectRef = document.querySelector('.cocktails');
 let btnLetterRef = [];
 let letter = '';
 let drinksList = [];
+let drinksList2 = [];
 let randomDrinks = [];
 let cardsPerPageAfterResize = 0;
 let cocktId = '';
@@ -24,6 +25,10 @@ let cardsPerPage = 9;
 let ingrMarkup = '';
 let ingrCardMarkup = '';
 let cocktListLength = 0;
+
+let btnLoadMarkup = '<button class="btnLoadM" type="button">Load more</button>';
+cocktList.insertAdjacentHTML('afterend', btnLoadMarkup);
+const btnLoadMoreRef = document.querySelector('.btnLoadM');
 
 const str = 'abcdefghijklmnopqrstuvwxyz 1234567890';
 let arr = str.split('');
@@ -102,19 +107,25 @@ createLetterList(arr);
 
 createRandomList();
 
-function fetch() {
-  let pages = 0;
-  let btnLoadMore = '';
+function fetch() {  
+
   if (letter !== '') {
     return getCocktailByLetter(letter).then(data => {
       if (data.drinks !== null) {
         cocktSectRef.classList.remove('visually-hidden');
-        notFoundRef.classList.add('not-found');
+        notFoundRef.classList.add('is-hidden');
         cocktListLength = data.drinks.length;
+        if (cocktListLength > cardsPerPage) {
+          console.log('btnLoadMore not hidden');
+          btnLoadMoreRef.style.display = 'inline-flex';
+          btnLoadMoreRef.addEventListener('click', paginator2)
+            
+        }
         drinksList = data.drinks;
-        const cardMarkup = renderDrinkMarkup(drinksList);
-        cocktList.innerHTML = '';
-        cocktList.insertAdjacentHTML('beforeend', cardMarkup);
+        console.log('drinksListOOO', drinksList);
+
+        paginator(drinksList)
+          
       } else {
         markupAlert();
       }
@@ -124,13 +135,61 @@ function fetch() {
   markupAlert();
 }
 
+
+function paginator(drinksList) {
+  let arr1 = [];
+  let counter1 = 0;
+  
+  arr1 = drinksList.splice(0, cardsPerPage);
+  drinksList2 = drinksList;
+  console.log('arr1', arr1);
+  console.log('drinksList2 again', drinksList2);
+  
+  const cardMarkup = renderDrinkMarkup(arr1);
+  cocktList.innerHTML = '';
+  cocktList.insertAdjacentHTML('beforeend', cardMarkup);
+  counter1 += 1;
+
+  console.log('counter1', counter1);
+  console.log('drinksList before SECOND pagination', drinksList);
+}
+
+function paginator2(counter1, arr1) {
+
+if (counter1 !== 0) {
+  console.log('counter1 BEFORE', counter1);
+  console.log('STARTING secondary pagination');
+  console.log('drinksList before SECOND pagination', drinksList2);
+  if (drinksList2.length < cardsPerPage) {
+          
+          const cardMarkup = renderDrinkMarkup(drinksList);
+          cocktList.insertAdjacentHTML('beforeend', cardMarkup);
+          btnLoadMoreRef.style.display = 'none';
+          console.log('Marked Up last page, hid the button');
+          counter1 += 1;
+        } else {
+    
+        arr1 = drinksList2.splice(0, cardsPerPage);
+        const cardMarkup = renderDrinkMarkup(arr1);
+    cocktList.insertAdjacentHTML('beforeend', cardMarkup);
+    console.log('3rd variand done');
+        counter1 += 1;
+
+  }
+  }
+  }
+
+
+
 function removeActive() {
   btnLetterRef.forEach(elem => {
     elem.classList.remove('button-active');
+    console.log('removeActive');
   });
 }
 
 const handleClick = event => {
+  
   removeActive();
   letter = event.target.textContent.trim().toLowerCase();
   event.target.classList.add('button-active');
