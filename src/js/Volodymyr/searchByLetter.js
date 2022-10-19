@@ -146,7 +146,7 @@ function paginator(drinksList) {
 function paginator2(counter1, arr1) {
 
 if (counter1 !== 0) {
-  if (drinksList2.length < cardsPerPage) {
+  if (drinksList2.length <= cardsPerPage) {
           const cardMarkup = renderDrinkMarkup(drinksList);
           cocktList.insertAdjacentHTML('beforeend', cardMarkup);
           btnLoadMoreRef.style.display = 'none';
@@ -170,8 +170,8 @@ function removeActive() {
 }
 
 const handleClick = event => {
+  if (event.target.parentNode.parentNode === formByLetter) {removeActive();}
   
-  removeActive();
   letter = event.target.textContent.trim().toLowerCase();
   event.target.classList.add('button-active');
   fetch();

@@ -12,7 +12,7 @@ searchFormRef.addEventListener('submit', onSearchSubmit);
 
 function onSearchSubmit(e) {
   e.preventDefault();
-  const userInput = searchFormRef.elements.searchQuery.value;
+  const userInput = searchFormRef.elements.searchQuery.value.trim().toLowerCase();
   cocktailsTitleRef.classList.remove('is-hidden');
   searchFailRef.classList.add('is-hidden');
 

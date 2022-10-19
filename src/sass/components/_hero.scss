@@ -152,13 +152,18 @@
       
 }
 
+.button-active {
+    color: #FD5103;
+}
+
 .btnLoadM {
         display: none;
         text-align: center;
 
         padding: 8px 16px;
         margin-top: 20px;
-        margin-left: 300px;
+        margin-left: calc((50%) - 51px);
+        margin-right: auto;
 
         background-color: #fe7031;
         color: #ffffff;
